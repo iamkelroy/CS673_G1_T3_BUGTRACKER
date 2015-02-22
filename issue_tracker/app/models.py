@@ -1,5 +1,7 @@
 from django.contrib.auth import models as auth_models
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.http import HttpResponseRedirect
 
 STATUSES = (('new', 'New',),
             ('assigned', 'Assigned',),
@@ -54,3 +56,6 @@ class Issue(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('view_issue', kwargs={'pk': self.pk})
