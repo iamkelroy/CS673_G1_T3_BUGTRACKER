@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+Dynamic Content Start:<br/>
+var myDate = new Date();
+myDate.setDate(myDate.getDate());
+
+<style>
+table {
+	border: 1px solid black;
+	}
+th, td {
+	border: 1px solid black;
+	padding: .2em .7em;
+	text-align: right;}
+</style>
+
+<td id="writeDay"></td>
+<script>
+ var dayElement = document.createElement("div");
+ dayElement.innerHTML = day;
+ function appendDay(target){
+  document.getElementById(target).appendChild(dayElement);
+ }
+</script>
+
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Issue Description</th>
+<th>Type</th>
+<th>Created By</th>
+<th>Created On</th>
+<th>Assigned To</th>
+<th>Last Updated</th>
+<th>Current Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Program Fails to run</td>
+<td>executable</td>
+<td>Alice</td>
+<td>February 14, 2015, 13:15</td>
+<td>Bob</td>
+<td>February 18, 2015, 10:00</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>3</td>
+<td>User's cannot login</td>
+<td>executable</td>
+<td>Alice</td>
+<td>February 14, 2015, 13:15</td>
+<td>Bob</td>
+<td>February 18, 2015, 10:00</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Program Fails to run</td>
+<td>executable</td>
+<td>Alice</td>
+<td>February 14, 2015, 13:15</td>
+<td>Bob</td>
+<td>February 18, 2015, 10:00</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Program Fails to run</td>
+<td>executable</td>
+<td>Alice</td>
+<td>February 14, 2015, 13:15</td>
+<td>Bob</td>
+<td>February 18, 2015, 10:00</td>
+<td>Open</td>
+</tr>
+<tr>
+<td>' '</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>myDate.toDateString()</td>
+<td></td>
+</tr>
+<tr>
+<td>""</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><script>appendDay("writeDay");</script></td>
+<td></td>
+</tr>
+<tr>
+<td> </td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><script>document.write(myDate).innerHTML;</script></td>
+<td></td>
+</tr>
+</tbody>
+<tfoot>
+
+
+
+
+</tfoot>
+</table>
+
+***NOTES***
+This is a static example.  The real version will consist of a Django loop function to produce the table based on the database.  
+Not all information in the database may be used by this page.  Additional information could be found on the individual issue page.  
+To create this page, it will be necessary to know the layout of the database.
+
+Dynamic Content End:<br/>
+
+{% endblock %}

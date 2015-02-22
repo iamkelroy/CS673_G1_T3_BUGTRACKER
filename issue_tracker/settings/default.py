@@ -36,7 +36,7 @@ MEDIA_ROOT = os.path.join(ABSOLUTE_BASE_PATH, 'media')
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(ABSOLUTE_BASE_PATH, 'static-files')
+    os.path.join(ABSOLUTE_BASE_PATH, 'static-files'),
 )
 
 # The URL that handles the media, static, etc.
