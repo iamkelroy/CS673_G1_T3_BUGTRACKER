@@ -1,7 +1,6 @@
 from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.http import HttpResponseRedirect
 
 STATUSES = (('new', 'New',),
             ('assigned', 'Assigned',),

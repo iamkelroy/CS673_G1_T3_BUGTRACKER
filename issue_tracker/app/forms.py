@@ -1,10 +1,11 @@
-
+"""Collection of forms used by the issue tracker."""
 from django import forms
 from django.contrib.auth.models import User
 
 from issue_tracker.app.models import STATUSES
 from issue_tracker.app.models import TYPES
 from issue_tracker.app.models import PRIORITIES
+
 
 class SearchForm(forms.Form):
     """Search for issues based on provided criteria."""
@@ -15,7 +16,6 @@ class SearchForm(forms.Form):
     issue_type = forms.ChoiceField(choices=TYPES, required=False)
     priority = forms.ChoiceField(choices=PRIORITIES, required=False)
 
-    
     submitted_date = forms.DateTimeField(
         help_text='Date issue was created', required=False)
     modified_date = forms.DateTimeField(

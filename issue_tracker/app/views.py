@@ -1,6 +1,5 @@
 """Container for the various views supported."""
 
-from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
@@ -18,6 +17,8 @@ class ExampleView(TemplateView):
         }
         return self.render_to_response(context)
 
+
+# TODO(jdarrieu): reporter is not populating yet, needs to be fixed.
 class CreateIssue(CreateView):
     model = it_models.Issue
     fields = ['title', 'description', 'issue_type', 'priority', 'project',
@@ -27,17 +28,13 @@ class CreateIssue(CreateView):
     def get_initial(self):
         return {"user": self.request.user}
 
+
 class ViewIssue(DetailView):
     model = it_models.Issue
     template_name = 'issue_detail.html'
+
 
 # TODO(jdarrieu): Not done with this work yet.
 class SearchIssues(FormView):
     form_class = forms.SearchForm
     template_name = 'search.html'
-
-    def form_valid(self, form):
-        results = search(form.cleaned_data)
-        if results:
-            return self.render_to_response({'form': form,
-                                            'issues': results})
