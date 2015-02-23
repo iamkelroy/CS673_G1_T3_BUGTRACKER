@@ -1,4 +1,5 @@
 from django.contrib.auth import models as auth_models
+from django.core.urlresolvers import reverse
 from django.db import models
 
 STATUSES = (('new', 'New',),
@@ -54,3 +55,6 @@ class Issue(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('view_issue', kwargs={'pk': self.pk})
