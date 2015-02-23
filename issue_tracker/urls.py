@@ -7,6 +7,9 @@ from django.contrib.staticfiles.views import serve
 from django.contrib import admin
 from issue_tracker.app import views as it_views
 
+#(JWA)
+from issue_tracker.app import views
+
 admin.autodiscover()
 
 urlpatterns = patterns(
@@ -28,4 +31,10 @@ urlpatterns = patterns(
     # Admin site setup.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Testing for Issue Multiple View (JWA).
+	#url(r'^issue/issue_index/$', login_required(it_views.ListIssues.as_view()),
+    #   name='issue_index'),
+		
+    url(r'^issue/issue_index/$', views.IndexIssues, name='issue_index'),
 )

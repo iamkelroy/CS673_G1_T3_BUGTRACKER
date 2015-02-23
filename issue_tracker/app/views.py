@@ -7,6 +7,13 @@ from django.views.generic.edit import FormView
 from issue_tracker.app import forms
 from issue_tracker.app import models as it_models
 
+# Added for further testing of Issue Index (JWA).
+from django.views.generic import View
+from django.http import HttpResponse
+from django.template import RequestContext, loader
+from issue_tracker.app.models import Issue
+# End of additions (JWA).
+
 
 class ExampleView(TemplateView):
     template_name = 'example.html'
@@ -38,3 +45,16 @@ class ViewIssue(DetailView):
 class SearchIssues(FormView):
     form_class = forms.SearchForm
     template_name = 'search.html'
+
+# Created to testing Issue Index template (JWA).
+#class ListIssues(TemplateView):
+#	model = it_models.Issue
+#	template_name = 'issue_index.html'
+	
+def IndexIssues(request):
+    issues_list = Issue.objects.order_by('pk')
+    template = loader.get_template('issue_index.html')
+    context = RequestContext(request, {
+        'issues_list': issues_list,
+    })
+    return HttpResponse(template.render(context))
