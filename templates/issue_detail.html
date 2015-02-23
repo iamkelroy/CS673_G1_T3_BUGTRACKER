@@ -1,0 +1,14 @@
+{% block content %}
+<h2>Issue: {{issue.pk}}: {{ issue }}</h2>
+ <ul>
+   <li>Created: {{ issue.submitted_date }} by {{ issue.creator }}</a></li>
+   <li>Last updated: {{ issue.date_modified|timesince }} ago</li>
+   <li>Status: {{ issue.status }}</li>
+   <li>Type: {{ issue.issue_type }}</li>
+   <li>Priority: {{ issue.priority }}</li>
+   <li>Assignee: {{ issue.assignee }}</li>
+ </ul>
+<h3>Description:</h3>
+<p>{{ issue.description }}</p>
+
+{% endblock content %}

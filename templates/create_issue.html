@@ -1,0 +1,36 @@
+<form action="" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="fieldWrapper">
+        {{ form.title.errors }}
+        <label for="{{ form.title.id_for_label }}">Short Description:</label>
+        {{ form.title }}
+    </div>
+        <div class="fieldWrapper">
+        {{ form.description.errors }}
+        <label for="{{ form.title.id_for_label }}">Long Description:</label>
+        {{ form.description }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.issue_type.errors }}
+        <label for="{{ form.title.id_for_label }}">Type:</label>
+        {{ form.issue_type }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.priority.errors }}
+        <label for="{{ form.title.id_for_label }}">Priority:</label>
+        {{ form.priority }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.project.errors }}
+        <label for="{{ form.title.id_for_label }}">Project:</label>
+        {{ form.project }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.assignee.errors }}
+        <label for="{{ form.title.id_for_label }}">Assignee:</label>
+        {{ form.assignee }}
+    </div>
+
+    <input type="submit" value="Create" />
+</form>
