@@ -370,11 +370,14 @@ left:50%;
     padding:10px;
 }
 
-#footer {
-    position: relative;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
+footer {
+    width: 100%;
+    text-align:center;
+    background: #875;
+    float: left;
+    margin: 0 0 .5% 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #202020
 }
 #history {
     line-height:15px;
