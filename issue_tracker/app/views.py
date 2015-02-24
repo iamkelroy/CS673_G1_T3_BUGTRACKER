@@ -13,7 +13,7 @@ from issue_tracker.app import models as it_models
 
 
 class ExampleView(TemplateView):
-    template_name = 'example.html'
+    template_name = 'issue_page.html'
 
     def get(self, request, *args, **kwargs):
         context = {

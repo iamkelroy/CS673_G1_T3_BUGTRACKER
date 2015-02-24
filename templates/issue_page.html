@@ -1,15 +1,17 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿{% extends 'base.html' %}
+
+{% block content %}
+{% load staticfiles %}
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
-	<!-- BOOTSTRAP STYLES-->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
-    <link href="css/joe_custom_style.css" rel="stylesheet" />
+    <title>Issue Tracker Issue Page</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static "css/joe_custom_style.css" %}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -23,28 +25,32 @@
                     <span class="fa fa-bar"></span>
                     <span class="fa fa-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Home</a>
+                <a class="navbar-brand" href="index.html">--Issue Type--</a>
             </div>
+            <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: left;
+font-size: 30px; " >View/Edit Issue</div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a  href="dash.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a  href="issue/issue_index/"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
                       <li>
-                        <a class="active-menu"   href="report.html"><i class="fa fa-desktop fa-3x"></i> File Report</a>
+                        <a class="active-menu"   href="/issue/add"><i class="fa fa-desktop fa-3x"></i> File Report</a>
                     </li>
                     <li>
                         <a  href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Time Tracking</a>
                     </li>
-					  <li  >
-                        <a   href="login.html"><i class="fa fa-bolt fa-3x"></i> Login</a>
+                      <li  >
+                        <a   href="/admin/login/"><i class="fa fa-bolt fa-3x"></i> Login</a>
                     </li>
                 </ul>
 
@@ -57,13 +63,14 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="
                 <div class="row">
                     <div class="col-md-12">
                         <div style="margin:5px;" class="btn-group">
-                          <button data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle">Current Status <span class="caret"></span></button>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                          <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle" id="dropdownMenu1">Current Status <span class="caret"></span></button>
+                          <ul class="dropdown-menu issue-menu" role="menu" aria-expanded="true" top="0px" position="relative">
+                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Open</a></li>
+                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Closed</a></li>
+                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Duplicate</a></li>
+                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Working as intended</a></li>
+                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">On Hold</a></li>
+                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">In Progress</a></li>
                           </ul>
                         </div>
                     </div>
@@ -108,9 +115,12 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="
                 <div id="history">
                     <br><br>
                     <Strong>History:</Strong><br><br>
-                    time stamp<br><br>
-                    updates<br><br>
-                    status changes<br><br>
+                    <ul>
+                        <li>Created By:  </li><br><br>
+                        <li>Assigned To:  </li><br><br>
+                        <li>Last Updated:  </li><br><br>
+                    </ul>
+
                     These will be added to the database with each change to the issue<br><br>
                 </div>
             </div>
@@ -121,4 +131,8 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="
         </div>
     </div>
 </body>
-</html>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+{% endblock %}
