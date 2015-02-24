@@ -15,7 +15,7 @@ urlpatterns = patterns(
         name='search'),
     url(r'^issue/add/$', login_required(it_views.CreateIssue.as_view()),
         name='create_issue'),
-    # For the uninitiated, pk is the primary key, which in our case is the 
+    # For the uninitiated, pk is the primary key, which in our case is the
     # bug id.
     url(r'^issue/view/(?P<pk>\d+)/$',
         login_required(it_views.ViewIssue.as_view()),
@@ -28,4 +28,10 @@ urlpatterns = patterns(
     # Admin site setup.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Testing for Issue Multiple View (JWA).
+    # url(r'^issue/issue_index/$',
+    #     login_required(it_views.ListIssues.as_view()),
+    #     name='issue_index'),
+    url(r'^issue/issue_index/$', it_views.IndexIssues, name='issue_index'),
 )

@@ -3,8 +3,7 @@
 {% block content %}
 
 Dynamic Content Start:<br/>
-var myDate = new Date();
-myDate.setDate(myDate.getDate());
+
 
 <style>
 table {
@@ -16,99 +15,35 @@ th, td {
 	text-align: right;}
 </style>
 
-<td id="writeDay"></td>
-<script>
- var dayElement = document.createElement("div");
- dayElement.innerHTML = day;
- function appendDay(target){
-  document.getElementById(target).appendChild(dayElement);
- }
-</script>
 
 <table>
 <thead>
 <tr>
-<th>Priority</th>
-<th>Issue Description</th>
+<th>Issue Number</th>
+<th>Issue Title</th>
 <th>Type</th>
-<th>Created By</th>
-<th>Created On</th>
-<th>Assigned To</th>
+<th>Issue Status</th>
+<th>Priority</th>
 <th>Last Updated</th>
-<th>Current Status</th>
+<th>Assigned To</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>1</td>
-<td>Program Fails to run</td>
-<td>executable</td>
-<td>Alice</td>
-<td>February 14, 2015, 13:15</td>
-<td>Bob</td>
-<td>February 18, 2015, 10:00</td>
-<td>Open</td>
-</tr>
-<tr>
-<td>3</td>
-<td>User's cannot login</td>
-<td>executable</td>
-<td>Alice</td>
-<td>February 14, 2015, 13:15</td>
-<td>Bob</td>
-<td>February 18, 2015, 10:00</td>
-<td>Open</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Program Fails to run</td>
-<td>executable</td>
-<td>Alice</td>
-<td>February 14, 2015, 13:15</td>
-<td>Bob</td>
-<td>February 18, 2015, 10:00</td>
-<td>Open</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Program Fails to run</td>
-<td>executable</td>
-<td>Alice</td>
-<td>February 14, 2015, 13:15</td>
-<td>Bob</td>
-<td>February 18, 2015, 10:00</td>
-<td>Open</td>
-</tr>
-<tr>
-<td>' '</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>myDate.toDateString()</td>
-<td></td>
-</tr>
-<tr>
-<td>""</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><script>appendDay("writeDay");</script></td>
-<td></td>
-</tr>
-<tr>
-<td> </td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td><script>document.write(myDate).innerHTML;</script></td>
-<td></td>
-</tr>
+{% if issues_list %}	
+{% for issue in issues_list %}
+ <tr>
+ <td>{{ issue.pk }}</td>
+ <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
+ <td>{{ issue.issue_type }}</td>
+ <td>{{ issue.status }}</td>
+ <td>{{ issue.priority }}</td>
+ <td>{{ issue.modified_date }}</td>
+ <td>{{ issue.assignee }}</td>
+ </tr>
+{% endfor %}
+{% else %}
+    <h3>There are no issues currently entered.</h3>
+{% endif %}
 </tbody>
 <tfoot>
 
@@ -117,11 +52,9 @@ th, td {
 
 </tfoot>
 </table>
-
+<br/>
 ***NOTES***
-This is a static example.  The real version will consist of a Django loop function to produce the table based on the database.  
-Not all information in the database may be used by this page.  Additional information could be found on the individual issue page.  
-To create this page, it will be necessary to know the layout of the database.
+This is a dynamic example to show an index of all issues created.  The issue names have been linked to the detail view page for each particular issue.  Not all information in the database may be used by this page.  Additional information could be found on the individual issue page. To create this page, it will be necessary to know the layout of the database.  Additional fields my be added as necessary per customer's needs.<br/><br/>
 
 Dynamic Content End:<br/>
 
