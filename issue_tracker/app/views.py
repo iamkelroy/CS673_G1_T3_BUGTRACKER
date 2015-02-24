@@ -1,6 +1,7 @@
 """Container for the various views supported."""
 
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template import loader
 from django.template import RequestContext
 from django.views.generic import DetailView
@@ -21,15 +22,18 @@ class ExampleView(TemplateView):
         return self.render_to_response(context)
 
 
-# TODO(jdarrieu): reporter is not populating yet, needs to be fixed.
 class CreateIssue(CreateView):
     model = it_models.Issue
     fields = ['title', 'description', 'issue_type', 'priority', 'project',
               'assignee']
     template_name = 'create_issue.html'
 
-    def get_initial(self):
-        return {"user": self.request.user}
+    def form_valid(self, form):
+        new_issue = form.save(commit=False)
+        new_issue.reporter = self.request.user
+        new_issue.date_modified = el
+        new_issue.save()
+        return HttpResponseRedirect(new_issue.get_absolute_url())
 
 
 class ViewIssue(DetailView):

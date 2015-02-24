@@ -1,8 +1,8 @@
 {% block content %}
 <h2>Issue: {{issue.pk}}: {{ issue }}</h2>
  <ul>
-   <li>Created: {{ issue.submitted_date }} by {{ issue.creator }}</a></li>
-   <li>Last updated: {{ issue.date_modified|timesince }} ago</li>
+   <li>Created: {{ issue.submitted_date }} by <a href="mailto:{{issue.reporter.email }}">{{ issue.reporter }}</a></li>
+   <li>Last modified: {{ issue.modified_date }}</li>
    <li>Status: {{ issue.status }}</li>
    <li>Type: {{ issue.issue_type }}</li>
    <li>Priority: {{ issue.priority }}</li>
