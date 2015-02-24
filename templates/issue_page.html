@@ -1,16 +1,17 @@
 ﻿{% extends 'base.html' %}
 
 {% block content %}
+{% load staticfiles %}
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Issue Tracker Issue Page</title>
-	<!-- BOOTSTRAP STYLES-->
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" />
-     <!-- FONTAWESOME STYLES-->
-    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
-    <link href="{{ STATIC_URL }}css/joe_custom_style.css" rel="stylesheet" />
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static "css/joe_custom_style.css" %}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -33,23 +34,23 @@ font-size: 30px;" >View/Edit Issue</div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a  href="issue_index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a  href="issue/issue_index/"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
                       <li>
-                        <a class="active-menu"   href="create_issue.html"><i class="fa fa-desktop fa-3x"></i> File Report</a>
+                        <a class="active-menu"   href="/issue/add"><i class="fa fa-desktop fa-3x"></i> File Report</a>
                     </li>
                     <li>
                         <a  href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Time Tracking</a>
                     </li>
-					  <li  >
-                        <a   href="login.html"><i class="fa fa-bolt fa-3x"></i> Login</a>
+                      <li  >
+                        <a   href="/admin/login/"><i class="fa fa-bolt fa-3x"></i> Login</a>
                     </li>
                 </ul>
 
@@ -129,8 +130,7 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="login.html" class="
     </div>
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
 {% endblock %}
-
