@@ -39,9 +39,9 @@ class Issue(models.Model):
     priority = models.CharField(max_length=20, choices=PRIORITIES)
     project = models.CharField(max_length=100, blank=True, choices=PROJECTS)
     # Dates
-    submitted_date = models.DateField(auto_now_add=True, editable=False)
-    modified_date = models.DateField(auto_now=True)
-    closed_date = models.DateField(null=True, editable=False)
+    submitted_date = models.DateTimeField(auto_now_add=True, editable=False)
+    modified_date = models.DateTimeField(auto_now=True)
+    closed_date = models.DateTimeField(null=True, editable=False)
     # Users
     reporter = models.ForeignKey(auth_models.User, related_name='reporter',
                                  null=True)
