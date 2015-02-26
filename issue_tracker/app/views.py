@@ -60,3 +60,12 @@ def IndexIssues(request):
         'issues_list': issues_list,
     })
     return HttpResponse(template.render(context))
+def CreateIssues(request):
+    issues_list = it_models.Issue.objects.order_by('pk')
+    template = loader.get_template('Create_Issue_Bootstrap.html')
+    context = RequestContext(request, {
+        'issues_list': issues_list,
+    })
+    return HttpResponse(template.render(context))
+
+

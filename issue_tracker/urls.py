@@ -34,4 +34,5 @@ urlpatterns = patterns(
     #     login_required(it_views.ListIssues.as_view()),
     #     name='issue_index'),
     url(r'^issue/issue_index/$', it_views.IndexIssues, name='issue_index'),
+    url(r'^issue/Create_Issue_Bootstrap/$', it_views.CreateIssues, name='Create_Issue_Bootstrap'),
 )
