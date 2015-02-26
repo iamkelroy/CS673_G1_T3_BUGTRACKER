@@ -19,7 +19,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
 	# For linux/mac hosts.
-        'NAME': 'C:/dev.db',
+        'NAME': '/tmp/dev.db',
 	# If you are working in windows, setup with a writable directory path.
 	#    'NAME': 'C:\TEMP\dev.db',
     }
