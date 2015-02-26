@@ -31,7 +31,7 @@ class CreateIssue(CreateView):
     def form_valid(self, form):
         new_issue = form.save(commit=False)
         new_issue.reporter = self.request.user
-        new_issue.date_modified = el
+        # new_issue.date_modified = el
         new_issue.save()
         return HttpResponseRedirect(new_issue.get_absolute_url())
 
