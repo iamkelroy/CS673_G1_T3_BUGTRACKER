@@ -68,5 +68,4 @@ def CreateIssues(request):
         'issues_list': issues_list,
     })
     return HttpResponse(template.render(context))
-
-
+	

@@ -10,8 +10,8 @@ from issue_tracker.app import views as it_views
 admin.autodiscover()
 
 urlpatterns = patterns(
-    '',
-    url(r'^search/$', login_required(it_views.SearchIssues.as_view()),
+   '',
+    url(r'^issue/search/$', login_required(it_views.SearchIssues.as_view()),
         name='search'),
     url(r'^issue/add/$', login_required(it_views.CreateIssue.as_view()),
         name='create_issue'),
@@ -21,7 +21,7 @@ urlpatterns = patterns(
         login_required(it_views.ViewIssue.as_view()),
         name='view_issue'),
     # Examples:
-    url(r'^$', it_views.ExampleView.as_view(), name='example'),
+    url(r'^issue/$', it_views.ExampleView.as_view(), name='example'),
     # static files path
     url(r'^%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), serve,
         {'show_indexes': True, 'insecure': False}),
