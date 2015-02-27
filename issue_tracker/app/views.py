@@ -38,7 +38,7 @@ class CreateIssue(CreateView):
 
 class ViewIssue(DetailView):
     model = it_models.Issue
-    template_name = 'issue_detail.html'
+    template_name = 'issue_page.html'
 
 
 # TODO(jdarrieu): Not done with this work yet.
