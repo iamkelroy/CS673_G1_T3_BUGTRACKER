@@ -51,7 +51,7 @@
                     <li><a  href="/issue/add"><i class="fa fa-desktop fa-3x"></i> File Report</a></li>
                     <li><a  href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Time Tracking</a></li>
                     <li><a  href="/admin/login/"><i class="fa fa-bolt fa-3x"></i> Login</a></li>
-		    <li><a  class="active-menu"  href="issue/Create_Issue_Bootstrap/"><i class="fa fa-bolt fa-3x"></i> Creat Issue</a></li>
+		            <li><a  class="active-menu"  href="issue/Create_Issue_Bootstrap/"><i class="fa fa-bolt fa-3x"></i> Create Issue</a></li>
                 </ul>
             </div>
         </nav>
@@ -62,66 +62,68 @@
                     <div id="description">
                     <h1 class="bug_name">Create New Issue</h1>
                     </div>
-
+                    <form action="" method="post">{% csrf_token %}
+                    {{ form.non_field_errors }}
                     <div id="resolution">
                         <p class="text-warning">
           	        <b>Project</b>
          	        </p>
-        	        <form>
-                    	    <select id="mySelect">
-                            <option>Project1</option>
-                    	    <option>Project2</option>
-            	    	    <option>Project3</option>
-            	    	    <option>Project4</option>
-            	    	    <option>Project5</option>
-          	    	    </select>
-        	        </form>
+                        <div class="fieldWrapper">
+                            {{ form.project.errors }}
+                            <label for="{{ form.title.id_for_label }}"></label>
+                            {{ form.project }}
+                        </div>
         	        <p class="text-warning">
           	        <b>Type</b>
         	        </p>
-                        <form draggable="true">
-          		    <select id="mySelect">
-            		    <option>Issue</option>
-            		    <option>Bug</option>
-            		    <option>Requirement</option>
-          		    </select>
-        		</form>
+                    <div class="fieldWrapper">
+                        {{ form.issue_type.errors }}
+                        <label for="{{ form.title.id_for_label }}"></label>
+                        {{ form.issue_type }}
+                    </div>
         		<p class="text-warning" style="">
           		<b>Short Description/Title</b>
         		</p>
-        		<input type="text" name="_IssueShortDis" size="50">
+        		<!--<input type="text" name="_IssueShortDis" size="50">-->
+                <div class="fieldWrapper">
+                    {{ form.title.errors }}
+                    <label for="{{ form.title.id_for_label }}"></label>
+                    {{ form.title }}
+                </div>
         		<p class="text-warning" style="">
          		<b>Long Description</b>
         		</p>
-        		<textarea rows="4" cols="50"></textarea>
-        		<p class="text-warning">
-          		<b>Reporter</b>
-        		</p>
-        		<input type="text" name="_Reporter">
+        		    </div>
+                <div class="fieldWrapper">
+                    {{ form.description.errors }}
+                    <label for="{{ form.title.id_for_label }}"></label>
+                    {{ form.description }}
+                </div>
         		<p style="" class="text-warning">
           		<b>Priority</b>
         		</p>
-        		<form>
-          		    <select id="mySelect">
-            		    <option>P1</option>
-            		    <option>P2</option>
-            		    <option>P3</option>
-            		    <option>P4</option>
-            		    <option>P5</option>
-          		</select>
-        		</form>
+        		    <div class="fieldWrapper">
+                        {{ form.priority.errors }}
+                        <label for="{{ form.title.id_for_label }}"></label>
+                        {{ form.priority }}
+                    </div>
         		<p class="text-warning">
           		<b>Assigned to.....(Option)</b>
         		</p>
-        		<input type="text" name="_Reporter">
+        		    <div class="fieldWrapper">
+                        {{ form.assignee.errors }}
+                        <label for="{{ form.title.id_for_label }}">Assignee:</label>
+                        {{ form.assignee }}
+                    </div>
 			
 			<div class="row">
                         <div class="col-md-12">
 			    <br><br>	
-               		    <a class="btn btn-primary" float="left">Submit</a>
+               		    <input type="submit" value="Create" class="btn btn-primary" float="left"/>
                    	</div>
      		  	</div>   
-		   </div>
+                </form>
+		     </div>
                 <footer id="footer">
                      Any information we would like to add to the footer will go here.
                 </footer>

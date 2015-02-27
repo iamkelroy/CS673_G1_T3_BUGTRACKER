@@ -26,7 +26,7 @@ class CreateIssue(CreateView):
     model = it_models.Issue
     fields = ['title', 'description', 'issue_type', 'priority', 'project',
               'assignee']
-    template_name = 'create_issue.html'
+    template_name = 'Create_Issue_Bootstrap.html'
 
     def form_valid(self, form):
         new_issue = form.save(commit=False)
@@ -60,6 +60,7 @@ def IndexIssues(request):
         'issues_list': issues_list,
     })
     return HttpResponse(template.render(context))
+
 def CreateIssues(request):
     issues_list = it_models.Issue.objects.order_by('pk')
     template = loader.get_template('Create_Issue_Bootstrap.html')
