@@ -30,7 +30,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: left;
-font-size: 30px; " >View/Edit Issue</div>
+font-size: 30px; " >Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}</div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
@@ -52,6 +52,9 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" cla
                       <li  >
                         <a   href="/admin/login/"><i class="fa fa-bolt fa-3x"></i> Login</a>
                     </li>
+		      <li  >
+                        <a   href="issue/Create_Issue_Bootstrap/"><i class="fa fa-bolt fa-3x"></i> Create Issue</a>
+                    </li>
                 </ul>
 
             </div>
@@ -63,7 +66,7 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" cla
                 <div class="row">
                     <div class="col-md-12">
                         <div style="margin:5px;" class="btn-group">
-                          <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle" id="dropdownMenu1">Current Status <span class="caret"></span></button>
+                          <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle" id="dropdownMenu1">Status: {{ issue.status }} <span class="caret"></span></button>
                           <ul class="dropdown-menu issue-menu" role="menu" aria-expanded="true" top="0px" position="relative">
                             <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Open</a></li>
                             <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Closed</a></li>
@@ -78,11 +81,10 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" cla
                 <div>
                     <div id="description">
                     <br><br>
-                    <h1 class="bug_name">Bug Name</h1>
-                    <p class="id">issue ID will be found here</p>
+                    <h1 class="bug_name">{{issue}}</h1>
+                    <p class="id">Issue ID: {{issue.pk}}</p>
                     <p class="bug_description">
-                    A long form description of the bug will follow it here.<br>
-                    in the future all the text on this page will be pulled from the database
+                    {{ issue.description }}
                     </p>
                     <form>
                     Contribute:<br>
@@ -116,9 +118,9 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" cla
                     <br><br>
                     <Strong>History:</Strong><br><br>
                     <ul>
-                        <li>Created By:  </li><br><br>
-                        <li>Assigned To:  </li><br><br>
-                        <li>Last Updated:  </li><br><br>
+                        <li>Created By: {{ issue.reporter }} </li><br><br>
+                        <li>Assigned To: {{ issue.assignee }} </li><br><br>
+                        <li>Last Updated: {{ issue.modified_date }} </li><br><br>
                     </ul>
 
                     These will be added to the database with each change to the issue<br><br>
