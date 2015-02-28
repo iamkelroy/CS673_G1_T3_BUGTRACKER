@@ -47,12 +47,6 @@ class SearchIssues(FormView):
     template_name = 'search.html'
 
 
-# Created to testing Issue Index template (JWA).
-# class ListIssues(TemplateView):
-#     model = it_models.Issue
-#     template_name = 'issue_index.html'
-
-
 def IndexIssues(request):
     issues_list = it_models.Issue.objects.order_by('pk')
     template = loader.get_template('issue_index.html')
@@ -61,6 +55,7 @@ def IndexIssues(request):
     })
     return HttpResponse(template.render(context))
 
+
 def CreateIssues(request):
     issues_list = it_models.Issue.objects.order_by('pk')
     template = loader.get_template('Create_Issue_Bootstrap.html')
@@ -68,8 +63,8 @@ def CreateIssues(request):
         'issues_list': issues_list,
     })
     return HttpResponse(template.render(context))
-		
+
+
 class ModifyIssue(DetailView):
     model = it_models.Issue
     template_name = 'modify.html'
-	
