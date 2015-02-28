@@ -22,8 +22,9 @@ router.register(r'rest/issues', it_viewsets.IssueViewSet)
 urlpatterns = patterns(
     '',
 
-    # Examples:
-    url(r'^$', it_views.MultipleIssues, name='issue_index'),
+    # Index page:
+    # TODO(jdarrieu): Get it to point to individual issues.
+    url(r'^$', it_views.MultipleIssues.as_view(), name='issue_index'),
 
     # static files path
     url(r'^%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), serve,
@@ -38,7 +39,9 @@ urlpatterns = patterns(
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
 
-    url(r'^issue/multi/$', it_views.MultipleIssues, name='multi_issue'),
+    url(r'^issue/multi/$',
+        it_views.MultipleIssues.as_view(),
+        name='multi_issue'),
     url(r'^issue/create/$',
         login_required(it_views.CreateIssue.as_view()),
         name='create_issue'),

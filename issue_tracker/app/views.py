@@ -1,11 +1,8 @@
 """Container for the various views supported."""
 
-from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.template import loader
-from django.template import RequestContext
 from django.views.generic import DetailView
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import FormView
 from issue_tracker.app import forms
@@ -26,6 +23,11 @@ class CreateIssue(CreateView):
         return HttpResponseRedirect(new_issue.get_absolute_url())
 
 
+class EditIssue(DetailView):
+    model = it_models.Issue
+    template_name = 'edit_issue.html'
+
+
 class ViewIssue(DetailView):
     model = it_models.Issue
     template_name = 'issue_detail.html'
@@ -37,15 +39,6 @@ class SearchIssues(FormView):
     template_name = 'search.html'
 
 
-def MultipleIssues(request):
-    issues_list = it_models.Issue.objects.order_by('pk')
-    template = loader.get_template('multi_issue.html')
-    context = RequestContext(request, {
-        'issues_list': issues_list,
-    })
-    return HttpResponse(template.render(context))
-
-
-class EditIssue(DetailView):
+class MultipleIssues(ListView):
     model = it_models.Issue
-    template_name = 'edit_issue.html'
+    template_name = 'multi_issue.html'
