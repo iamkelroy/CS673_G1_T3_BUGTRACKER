@@ -12,8 +12,8 @@ from issue_tracker.app import forms
 from issue_tracker.app import models as it_models
 
 
-class ExampleView(TemplateView):
-    template_name = 'issue_page.html'
+class LandingPageView(TemplateView):
+    template_name = 'issue_index.html'
 
     def get(self, request, *args, **kwargs):
         context = {
