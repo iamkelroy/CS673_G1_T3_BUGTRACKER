@@ -34,7 +34,14 @@ font-size: 30px; " >Viewing a {{ issue.issue_type }} Priority: {{ issue.priority
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;">
+  {% if user.is_authenticated %}
+    Last access : {{ user.last_login }} &nbsp;
+    <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a>
+  {% else %}
+    <a href="/admin/login/" class="btn btn-danger square-btn-adjust">Login</a>
+  {% endif %}
+ </div>
         </nav>
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -70,7 +77,6 @@ font-size: 16px;"> Last access : 22 Feb 2015 &nbsp; <a href="/admin/logout/" cla
 </body>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
-<script src="{% static "js/bootstrap.js" %}"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
 
 </html>

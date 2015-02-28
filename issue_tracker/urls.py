@@ -21,7 +21,7 @@ urlpatterns = patterns(
         login_required(it_views.ViewIssue.as_view()),
         name='view_issue'),
     # Examples:
-    url(r'^issue/$', it_views.ExampleView.as_view(), name='example'),
+    url(r'^$', it_views.LandingPageView.as_view(), name='LandingPage'),
     # static files path
     url(r'^%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), serve,
         {'show_indexes': True, 'insecure': False}),
