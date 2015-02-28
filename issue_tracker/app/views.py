@@ -68,4 +68,8 @@ def CreateIssues(request):
         'issues_list': issues_list,
     })
     return HttpResponse(template.render(context))
+		
+class ModifyIssue(DetailView):
+    model = it_models.Issue
+    template_name = 'modify.html'
 	
