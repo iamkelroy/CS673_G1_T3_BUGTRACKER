@@ -24,7 +24,9 @@ urlpatterns = patterns(
 
     # Index page:
     # TODO(jdarrieu): Get it to point to individual issues.
-    url(r'^$', it_views.MultipleIssues.as_view(), name='issue_index'),
+    url(r'^$',
+        login_required(it_views.MultipleIssues.as_view()),
+        name='issue_index'),
 
     # static files path
     url(r'^%s(?P<path>.*)$' % settings.STATIC_URL.lstrip('/'), serve,
@@ -40,7 +42,7 @@ urlpatterns = patterns(
                                namespace='rest_framework')),
 
     url(r'^issue/multi/$',
-        it_views.MultipleIssues.as_view(),
+        login_required(it_views.MultipleIssues.as_view()),
         name='multi_issue'),
     url(r'^issue/create/$',
         login_required(it_views.CreateIssue.as_view()),

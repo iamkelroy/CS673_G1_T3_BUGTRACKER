@@ -42,6 +42,7 @@ STATICFILES_DIRS = (
 # The URL that handles the media, static, etc.
 STATIC_URL = '/static/'
 MEDIA_URL = STATIC_URL + 'media/'
+LOGIN_URL = '/admin/login?next=/'
 
 
 # Admins and managers.. Oh MY!
