@@ -29,18 +29,18 @@ th, td {
 </tr>
 </thead>
 <tbody>
-{% if issues_list %}	
-{% for issue in issues_list %}
- <tr>
- <td>{{ issue.pk }}</td>
- <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
- <td>{{ issue.issue_type }}</td>
- <td>{{ issue.status }}</td>
- <td>{{ issue.priority }}</td>
- <td>{{ issue.modified_date }}</td>
- <td>{{ issue.assignee }}</td>
- </tr>
-{% endfor %}
+{% if object_list %}	
+  {% for issue in object_list %}
+   <tr>
+   <td>{{ issue.pk }}</td>
+   <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
+   <td>{{ issue.issue_type }}</td>
+   <td>{{ issue.status }}</td>
+   <td>{{ issue.priority }}</td>
+   <td>{{ issue.modified_date }}</td>
+   <td>{{ issue.assignee }}</td>
+   </tr>
+  {% endfor %}
 {% else %}
     <h3>There are no issues currently entered.</h3>
 {% endif %}

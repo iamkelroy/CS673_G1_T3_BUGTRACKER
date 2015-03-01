@@ -21,9 +21,8 @@
                 <div>
                     <div id="description">
                     <br><br>
-                    <h1 class="bug_name">{{issue}}</h1>
-                    <p class="id">Issue ID: {{issue.pk}}</p>
-                    <p class="bug_description">
+                    <h1 class="bug_name">{{ issue.pk }}:  {{issue.title}}</h1>
+                    <p class="bug_description">Description:</br>
                     {{ issue.description }}
                     </p>
                     <form>
