@@ -1,73 +1,76 @@
 ﻿{% extends 'base.html' %}
 
-{% block content %}
- 
-  <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div style="margin:5px;" class="btn-group">
-                          <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle" id="dropdownMenu1">Status: {{ issue.status }} <span class="caret"></span></button>
-                          <ul class="dropdown-menu issue-menu" role="menu" aria-expanded="true" top="0px" position="relative">
-                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Open</a></li>
-                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Closed</a></li>
-                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Duplicate</a></li>
-                            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Working as intended</a></li>
-                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">On Hold</a></li>
-                            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">In Progress</a></li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div id="description">
-                    <br><br>
-                    <h1 class="bug_name">{{ issue.pk }}:  {{issue.title}}</h1>
-                    <p class="bug_description">Description:</br>
-                    {{ issue.description }}
-                    </p>
-                    <form>
-                    Contribute:<br>
-                    <textarea id="contribute" rows="8" cols="50" padding="5">
-                    </textarea>
-                    <br>
-                    <input type="submit" value="Submit">
-                    </form>
-                    <p>
-                    Following the long form description of the bug will be a chronologically ordered discussion.  Above it will be a text entry for anyone who wishes to join the conversation.
-                    </p>
-                </div>
-                <div id="resolution">
-                    <br><br>
-                    <Strong> A summary of the resolution can be found here on completed bugs</Strong>
-                    <p>
-                    This is a sample resolution of our bug
-                    </p>
-                    <p>
-                    In the future this information will be pulled from the database.
-                    </p>
-                    <form>
-                    Submit Resolution:<br>
-                    <textarea name="contribute" id="1" rows="8" cols="35">
-                    </textarea>
-                    <br>
-                    <input type="submit" value="Submit">
-                    </form>
-                </div>
-                <div id="history">
-                    <br><br>
-                    <Strong>History:</Strong><br><br>
-                    <ul>
-                        <li>Created By: {{ issue.reporter }} </li><br><br>
-                        <li>Assigned To: {{ issue.assignee }} </li><br><br>
-                        <li>Last Updated: {{ issue.modified_date }} </li><br><br>
-                    </ul>
+{% block title %}Issue Details{% endblock %}
+{% block header_title %}Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}{% endblock %}
 
-                    These will be added to the database with each change to the issue<br><br>
-                </div>
- </div>
-        <footer id="footer">
-            Any information we would like to add to the footer will go here.
-        </footer>
+{% block content %}
+
+<div id="page-inner">
+<div class="row">
+    <div class="col-md-12">
+        <div style="margin:5px;" class="btn-group">
+          <button aria-expanded="true" data-toggle="dropdown" class="btn btn-danger btn-issue dropdown-toggle" id="dropdownMenu1">Status: {{ issue.status }} <span class="caret"></span></button>
+          <ul class="dropdown-menu issue-menu" role="menu" aria-expanded="true" top="0px" position="relative">
+            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Open</a></li>
+            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Closed</a></li>
+            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Duplicate</a></li>
+            <li class="closed-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">Working as intended</a></li>
+            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">On Hold</a></li>
+            <li class="open-status" role="presentation"><a role="menuitem" tabindex="-1" href="#">In Progress</a></li>
+          </ul>
+        </div>
+    </div>
+</div>
+<div>
+    <div id="description">
+    <br><br>
+    <h1 class="bug_name">{{ issue.pk }}:  {{issue.title}}</h1>
+    <p class="bug_description">Description:</br>
+    {{ issue.description }}
+    </p>
+    <form>
+    Contribute:<br>
+    <textarea id="contribute" rows="8" cols="50" padding="5">
+    </textarea>
+    <br>
+    <input type="submit" value="Submit">
+    </form>
+    <p>
+    Following the long form description of the bug will be a chronologically ordered discussion.  Above it will be a text entry for anyone who wishes to join the conversation.
+    </p>
+</div>
+<div id="resolution">
+    <br><br>
+    <Strong> A summary of the resolution can be found here on completed bugs</Strong>
+    <p>
+    This is a sample resolution of our bug
+    </p>
+    <p>
+    In the future this information will be pulled from the database.
+    </p>
+    <form>
+    Submit Resolution:<br>
+    <textarea name="contribute" id="1" rows="8" cols="35">
+    </textarea>
+    <br>
+    <input type="submit" value="Submit">
+    </form>
+</div>
+<div id="history">
+    <br><br>
+    <Strong>History:</Strong><br><br>
+    <ul>
+        <li>Created By: {{ issue.reporter }} </li><br><br>
+        <li>Assigned To: {{ issue.assignee }} </li><br><br>
+        <li>Last Updated: {{ issue.modified_date }} </li><br><br>
+    </ul>
+
+    These will be added to the database with each change to the issue<br><br>
+</div>
+</div>
+<footer id="footer">
+    Any information we would like to add to the footer will go here.
+</footer>
 
 
 {% endblock %}

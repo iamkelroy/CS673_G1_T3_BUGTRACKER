@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+{% block title %}Create Issue{% endblock %}
+{% block header_title %}<div class="bug_name">Create New Issue</div> {% endblock %}
+
 {% block content %}
 
             <div id="page-inner">
@@ -57,7 +60,7 @@
         		</p>
         		    <div class="fieldWrapper">
                         {{ form.assignee.errors }}
-                        <label for="{{ form.title.id_for_label }}">Assignee:</label>
+                        <label for="{{ form.title.id_for_label }}"></label>
                         {{ form.assignee }}
                     </div>
 			

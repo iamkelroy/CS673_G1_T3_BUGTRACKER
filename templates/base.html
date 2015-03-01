@@ -5,7 +5,7 @@
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Issue Tracker Issue Page</title>
+    <title>Issue Tracker - {% block title %} Issue Page {% endblock %}</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -14,6 +14,7 @@
     <link href="{% static "css/joe_custom_style.css" %}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   {% block header_additions %}{% endblock %}
 </head>
 <body>
     <div id="wrapper">
@@ -30,7 +31,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: left;
-font-size: 30px; " >Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}</div>
+font-size: 30px; " >{% block header_title %} {% endblock %}</div>
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
