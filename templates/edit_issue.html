@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Issue #{{ issue.pk }}{% endblock %}
+
+{% block content %}
+
+<div id="page-inner">
+                <div>
+                    <div id="description">
+                    <h1 class="bug_name">Edit Issue</h1>
+                    </div>
+
+                    <form action="" method="post">{% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <div id="resolution">
+
+                    	 <p class="text-warning"><b>Issue Number: {{ issue.pk }}</b></p>
+
+                    	 <p class="text-warning" style=""><b>Title: {{ issue.title }}</b></p>
+        		        
+                        <p class="text-warning" style=""><b>Description: </b></p>
+                        <p>{{ issue.description }}</p>
+                        
+                        <p class="text-warning"><b>Type</b></p>
+                        <div class="fieldWrapper">
+                            {{ form.issue_type.errors }}
+                            <label for="{{ form.title.id_for_label }}"></label>
+                            {{ form.issue_type }}
+                        </div>
+
+                        <p class="text-warning"><b>Project: {{ issue.project }}</b></p>
+                        <div class="fieldWrapper">
+                            {{ form.project.errors }}
+                            <label for="{{ form.title.id_for_label }}"></label>
+                            {{ form.project }}
+                        </div>
+
+        	            <p style="" class="text-warning"><b>Priority</b></p>
+        		        <div class="fieldWrapper">
+                            {{ form.priority.errors }}
+                            <label for="{{ form.title.id_for_label }}"></label>
+                            {{ form.priority }}
+                        </div>
+
+                        <p class"text-warning"><b>Submitted Date: {{ issue.submitted_date }}</b><p>
+
+                         <p class="text-warning"><b>Modified Date:</b></p>
+        		        <div class="fieldWrapper">
+                            {{ form.modified_date.errors }}
+                            <label for="{{ form.title.id_for_label }}">Modified Date:</label>
+                            {{ form.modified_date }}
+                        </div>
+                        
+                         <p class="text-warning"><b>Closed Date:</b></p>
+        		        <div class="fieldWrapper">
+                            {{ form.closed_date.errors }}
+                            <label for="{{ form.title.id_for_label }}">Closed Date:</label>
+                            {{ form.closed_date }}
+                        </div>	
+
+        		        <p class="text-warning"><b>Reporter: {{ issue.report }}</b></p>
+        		        
+                        <p class="text-warning"><b>Assigned to:</b></p>
+        		        <div class="fieldWrapper">
+                            {{ form.assignee.errors }}
+                            <label for="{{ form.title.id_for_label }}">Assignee:</label>
+                            {{ form.assignee }}
+                        </div>
+
+                        <p class="text-warning"><b>Verifier:</b></p>
+        		        <div class="fieldWrapper">
+                            {{ form.verifier.errors }}
+                            <label for="{{ form.title.id_for_label }}">Verifier:</label>
+                            {{ form.verifier }}
+                        </div>
+
+                        <p class="text-warning" style=""><b>Update Status:</b></p> 
+                        <div class="fieldWrapper">
+                             {{ form.description.errors }}
+                             <label for="{{ form.title.id_for_label }}"></label>
+                             {{ form.description }}
+                        </div>
+                    </div>
+
+                
+        		      
+			        <div class="row">
+                        <div class="col-md-12">
+			                <br><br>	
+               		    <input type="submit" value="Update" class="btn btn-primary" float="left"/>
+                   	    </div>
+                   	</div>
+
+                    </form>
+
+                </div>
+</div>
+
+                <footer id="footer">
+                     Any information we would like to add to the footer will go here.
+                </footer>
+
+{% endblock %}

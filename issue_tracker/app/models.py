@@ -2,26 +2,29 @@ from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse
 from django.db import models
 
-STATUSES = (('new', 'New',),
-            ('assigned', 'Assigned',),
-            ('accepted', 'Accepted',),
-            ('fixed', 'Fixed',),
-            ('verified', 'Verified',),
-            ('wai', 'Working as Intended',),
-            ('obsolete', 'Obsolete',),
-            ('duplicate', 'Duplicate',),
-            )
+STATUSES = (
+    ('new', 'New',),
+    ('assigned', 'Assigned',),
+    ('accepted', 'Accepted',),
+    ('fixed', 'Fixed',),
+    ('verified', 'Verified',),
+    ('wai', 'Working as Intended',),
+    ('obsolete', 'Obsolete',),
+    ('duplicate', 'Duplicate',),
+    )
 
-TYPES = (('bug', 'Bug',),
-         ('feature', 'Feature Request',),
-         ('internal_cleanup', 'Internal Cleanup',),
-         )
+TYPES = (
+    ('bug', 'Bug',),
+    ('feature', 'Feature Request',),
+    ('internal_cleanup', 'Internal Cleanup',),
+    )
 
-PRIORITIES = (('p1', 'P1',),
-              ('p2', 'P2',),
-              ('p3', 'P3',),
-              ('p4', 'P4',),
-              )
+PRIORITIES = (
+    ('p1', 'P1',),
+    ('p2', 'P2',),
+    ('p3', 'P3',),
+    ('p4', 'P4',),
+    )
 
 
 # TODO(jdarrieu): Dummied up, waiting for other team to provide.
@@ -35,7 +38,7 @@ class Issue(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=2000)
     issue_type = models.CharField(max_length=20, choices=TYPES)
-    status = models.CharField(max_length=20, default='New', choices=STATUSES)
+    status = models.CharField(max_length=20, default='new', choices=STATUSES)
     priority = models.CharField(max_length=20, choices=PRIORITIES)
     project = models.CharField(max_length=100, blank=True, choices=PROJECTS)
     # Dates

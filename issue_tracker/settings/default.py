@@ -42,6 +42,7 @@ STATICFILES_DIRS = (
 # The URL that handles the media, static, etc.
 STATIC_URL = '/static/'
 MEDIA_URL = STATIC_URL + 'media/'
+LOGIN_URL = '/admin/login?next=/'
 
 
 # Admins and managers.. Oh MY!
@@ -109,7 +110,9 @@ CORE_APPS = (
 )
 
 # Placeholder for incorporating in external apps.
-EXTERNAL_APPS = ()
+EXTERNAL_APPS = (
+    'rest_framework',
+)
 
 # The local apps we have developed.
 LOCAL_APPS = (
@@ -119,6 +122,13 @@ LOCAL_APPS = (
 # The order is important!
 # https://docs.djangoproject.com/en/1.7/ref/settings/#installed-apps
 INSTALLED_APPS = ADMIN_TOOL_APPS + CORE_APPS + LOCAL_APPS + EXTERNAL_APPS
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'PAGINATE_BY': 10,
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

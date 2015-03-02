@@ -1,12 +1,83 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head></head>
+
+{% load staticfiles %}
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Issue Tracker - {% block title %} Issue Page {% endblock %}</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static "css/joe_custom_style.css" %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   {% block header_additions %}{% endblock %}
+</head>
 <body>
-<h1>Header common for all templates.</h1>
-<p/>
-<!-- This is the specific content for a given page. -->
-{% block content %}{% endblock %}
-<p/>
-<h2>Footer common for all templates.</h2>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bar"></span>
+                    <span class="fa fa-bar"></span>
+                    <span class="fa fa-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">--Issue Tracker--</a>
+            </div>
+            <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: left;
+font-size: 30px; " >{% block header_title %} {% endblock %}</div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;">
+  {% if user.is_authenticated %}
+    Last access : {{ user.last_login }} &nbsp;
+    <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a>
+  {% else %}
+    <a href="/admin/login/" class="btn btn-danger square-btn-adjust">Login</a>
+  {% endif %}
+ </div>
+        </nav>
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a  href="/"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    </li>
+                      <li>
+                        <a class="active-menu"   href="/issue/create"><i class="fa fa-desktop fa-3x"></i> Create Issue</a>
+                    </li>
+                    <li>
+                    <!-- TODO: Add this back in when we have a valid link.
+                    <a  href="/tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Time Tracking</a> 
+                    -->
+                      <i class="fa fa-qrcode fa-3x"></i> Time Tracking
+                    </li>
+                      <li  >
+                        <a   href="/admin/login/"><i class="fa fa-bolt fa-3x"></i> Admin Site</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+           {% block content %}
+
+           {% endblock %} 
+        </div>
+    </div>
 </body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+
 </html>
