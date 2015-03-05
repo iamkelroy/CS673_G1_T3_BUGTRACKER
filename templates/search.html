@@ -1,21 +1,64 @@
 {% extends 'base.html' %}
 
-{% block title %}Issue Search{% endblock %}
+{% block title %} {{ page }} {% endblock %}
 
 {% block content %}
-<h2>Issue Search</h2>
+
+{% if object_list %}
+<style>
+table {
+	border: 1px solid black;
+	}
+th, td {
+	border: 1px solid black;
+	padding: .2em .7em;
+	text-align: right;}
+th, td:nth-child(2) { text-align: left; }
+</style>
+
+
+<table>
+<thead>
+<tr>
+<th>Issue Number</th>
+<th>Issue Title</th>
+<th>Type</th>
+<th>Issue Status</th>
+<th>Priority</th>
+<th>Last Updated</th>
+<th>Assigned To</th>
+</tr>
+</thead>
+<tbody>
+{% if object_list %}	
+  {% for issue in object_list %}
+   <tr>
+   <td>{{ issue.pk }}</td>
+   <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
+   <td>{{ issue.issue_type }}</td>
+   <td>{{ issue.status }}</td>
+   <td>{{ issue.priority }}</td>
+   <td>{{ issue.modified_date }}</td>
+   <td>{{ issue.assignee }}</td>
+   </tr>
+  {% endfor %}
+{% else %}
+    <h3>There are no issues currently entered.</h3>
+{% endif %}
+</tbody>
+<tfoot>
+
+</tfoot>
+</table>
+
+{% else %}
+  <h2>Issue Search</h2>
     
-<form action="" method="POST">
-  <table>{{ form }}</table>
-  <input type="submit" value="Submit" />
-</form>
-    
- {% if issues %}
-   <ul>
-   {% for issue in issues %}
-      <li>{{ issue.id }} {{ issue.title }} {{ issue.status }} {{ issue.description|truncatewords:10 }} {{ issue.reporter }} {{ issue.assignee }} {{ issue.priority }}</li>
-   {% endfor %}
-   </ul>
-  {% endif %}
+  <form action="" method="POST">{% csrf_token %}
+    <table>{{ form }}</table>
+    <input type="submit" value="Submit" />
+  </form>
+{% endif %}
+
     
 {% endblock %}
