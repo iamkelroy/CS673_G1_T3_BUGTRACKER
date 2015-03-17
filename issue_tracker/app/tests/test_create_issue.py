@@ -6,7 +6,6 @@ import unittest
 from time import sleep
 
 
-@unittest.skip("debugging")
 class CreateIssueTestCase(LiveServerTestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
