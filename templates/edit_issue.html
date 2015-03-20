@@ -6,9 +6,9 @@
 
 <div id="page-inner">
                 <div>
-                    <div id="description">
+                    <!--<div id="description"> -->
                     <h1 class="bug_name">Edit Issue</h1>
-                    </div>
+                    <!-- </div> -->
 
                     <form action="" method="post">{% csrf_token %}
                     {{ form.non_field_errors }}
@@ -17,10 +17,13 @@
 
                     	 <p class="text-warning"><b>Issue Number: {{ issue.pk }}</b></p>
 
-                    	 <p class="text-warning" style=""><b>Title: {{ issue.title }}</b></p>
+                    	 <p class="text-warning" style=""><b>Title: </b></p>
+                         <p> {{ form.title.errors }}
+                             <label for="{{ form.title.id_for_label }}"></label>
+                             {{ form.title }}
+                         </p>
         		        
-                        <p class="text-warning" style=""><b>Description: </b></p>
-                        <p>{{ issue.description }}</p>
+                        <p class="text-warning" style=""><b>Description: {{ issue.description }}</b></p>
                         
                         <p class="text-warning"><b>Type</b></p>
                         <div class="fieldWrapper">
@@ -44,7 +47,9 @@
                         </div>
 
                         <p class"text-warning"><b>Submitted Date: {{ issue.submitted_date }}</b><p>
+                    </div>
 
+                    <div style="float: right;">
                          <p class="text-warning"><b>Modified Date:</b></p>
         		        <div class="fieldWrapper">
                             {{ form.modified_date.errors }}
@@ -59,7 +64,7 @@
                             {{ form.closed_date }}
                         </div>	
 
-        		        <p class="text-warning"><b>Reporter: {{ issue.report }}</b></p>
+        		        <p class="text-warning"><b>Reporter: {{ issue.reporter }}</b></p>
         		        
                         <p class="text-warning"><b>Assigned to:</b></p>
         		        <div class="fieldWrapper">
@@ -77,9 +82,9 @@
 
                         <p class="text-warning" style=""><b>Update Status:</b></p> 
                         <div class="fieldWrapper">
-                             {{ form.description.errors }}
+                             {{ form.status.errors }}
                              <label for="{{ form.title.id_for_label }}"></label>
-                             {{ form.description }}
+                             {{ form.status }}
                         </div>
                     </div>
 
@@ -91,6 +96,8 @@
                		    <input type="submit" value="Update" class="btn btn-primary" float="left"/>
                    	    </div>
                    	</div>
+
+                   </div>
 
                     </form>
 
