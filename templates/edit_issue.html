@@ -4,11 +4,16 @@
 
 {% block content %}
 
+<form action="" method="post">{% csrf_token %}
+   {{ form }}
+   <input type="submit" value="Submit"/>
+</form>
+
+<!--
+
 <div id="page-inner">
                 <div>
-                    <!--<div id="description"> -->
                     <h1 class="bug_name">Edit Issue</h1>
-                    <!-- </div> -->
 
                     <form action="" method="post">{% csrf_token %}
                     {{ form.non_field_errors }}
@@ -107,5 +112,5 @@
                 <footer id="footer">
                      Any information we would like to add to the footer will go here.
                 </footer>
-
+                -->
 {% endblock %}

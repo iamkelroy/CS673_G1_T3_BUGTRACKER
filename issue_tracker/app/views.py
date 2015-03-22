@@ -34,16 +34,6 @@ class EditIssue(UpdateView):
          'assignee', 'status', 'verifier']
     template_name = 'edit_issue.html'
 
-	# Need to determine the correct wording to "update_issue" instead of "new_issue"
-	# Need to add additional fields.
-	
-    def form_valid(self, form):
-        instance = form.update()
-        instance.reporter = self.request.user
-        instance.date_modified = datetime.datetime.now()
-        instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
-
 class ViewIssue(DetailView):
     model = it_models.Issue
     template_name = 'issue_detail.html'
