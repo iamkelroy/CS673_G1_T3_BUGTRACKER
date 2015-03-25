@@ -1,14 +1,101 @@
 {% extends 'base.html' %}
 
 {% block title %}Edit Issue #{{ issue.pk }}{% endblock %}
+{% block header_title %}<div class="bug_name">Edit Issue</div> {% endblock %}
 
 {% block content %}
 
-<form action="" method="post">{% csrf_token %}
-   {{ form }}
-   <input type="submit" value="Submit"/>
-</form>
+<div id="page-inner">
+    <div>
+<!--
+        <form action="" method="post">{% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit"/>
+        </form>
+ -->       
+        <form action="" method="post">{% csrf_token %}
+        {{ form.non_field_errors }}
 
+            <div>
+
+                <p class="text-warning"><b>Issue Number: {{ issue.pk }}</b></p>
+
+                <div class="fieldWrapper">
+                    {{ form.title.errors }}
+                    <label for="{{ form.title.id_for_label }}">Title:</label>
+                    {{ form.title }}
+                </div>
+
+                <p class="text-warning" style=""><b>Description: {{ issue.description }}</b></p>
+
+                <div class="fieldWrapper">
+                    {{ form.issue_type.errors }}
+                    <label for="{{ form.issue_type.id_for_label }}">Type:</label>
+                    {{ form.issue_type }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.status.errors }}
+                    <label for="{{ form.status.id_for_label }}">Status:</label>
+                    {{ form.status }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.priority.errors }}
+                    <label for="{{ form.priority.id_for_label }}">Priority:</label>
+                    {{ form.priority }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.project.errors }}
+                    <label for="{{ form.project.id_for_label }}">Project:</label>
+                    {{ form.project }}
+                </div>
+            </div>
+
+            <div>
+                <p class="text-warning"><b>Submitted Date: {{ issue.submitted_date }}</b></p>
+
+                <p class="text-warning"><b>Last Updated: {{ issue.modified_date }}</b></p>
+
+                <div class="fieldWrapper">
+                    {{ form.closed_date.errors }}
+                    <label for="{{ form.closed_date_for_label }}">Closed Date:</label>
+                    {{ form.closed_date }}
+                </div>
+
+                <p class="text-warning"><b>Reporter: {{ issue.reporter }}</b></p>
+
+                <div class="fieldWrapper">
+                    {{ form.assignee.errors }}
+                    <label for="{{ form.assignee.id_for_label }}">Assignee:</label>
+                    {{ form.assignee }}
+                </div>
+
+                <div class="fieldWrapper">
+                    {{ form.verifier.errors }}
+                    <label for="{{ form.verifier.id_for_label }}">Verifier:</label>
+                    {{ form.verifier }}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <br><br>    
+                        <input type="submit" value="Update" class="btn btn-primary" float="left"/>
+                    </div>
+                </div>
+<!--
+                <input type="submit" value="Update" class="btn btn-primary" float="left"/> -->
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+
+</div>
 <!--
 
 <div id="page-inner">
@@ -17,82 +104,6 @@
 
                     <form action="" method="post">{% csrf_token %}
                     {{ form.non_field_errors }}
-
-                    <div id="resolution">
-
-                    	 <p class="text-warning"><b>Issue Number: {{ issue.pk }}</b></p>
-
-                    	 <p class="text-warning" style=""><b>Title: </b></p>
-                         <p> {{ form.title.errors }}
-                             <label for="{{ form.title.id_for_label }}"></label>
-                             {{ form.title }}
-                         </p>
-        		        
-                        <p class="text-warning" style=""><b>Description: {{ issue.description }}</b></p>
-                        
-                        <p class="text-warning"><b>Type</b></p>
-                        <div class="fieldWrapper">
-                            {{ form.issue_type.errors }}
-                            <label for="{{ form.title.id_for_label }}"></label>
-                            {{ form.issue_type }}
-                        </div>
-
-                        <p class="text-warning"><b>Project: {{ issue.project }}</b></p>
-                        <div class="fieldWrapper">
-                            {{ form.project.errors }}
-                            <label for="{{ form.title.id_for_label }}"></label>
-                            {{ form.project }}
-                        </div>
-
-        	            <p style="" class="text-warning"><b>Priority</b></p>
-        		        <div class="fieldWrapper">
-                            {{ form.priority.errors }}
-                            <label for="{{ form.title.id_for_label }}"></label>
-                            {{ form.priority }}
-                        </div>
-
-                        <p class"text-warning"><b>Submitted Date: {{ issue.submitted_date }}</b><p>
-                    </div>
-
-                    <div style="float: right;">
-                         <p class="text-warning"><b>Modified Date:</b></p>
-        		        <div class="fieldWrapper">
-                            {{ form.modified_date.errors }}
-                            <label for="{{ form.title.id_for_label }}">Modified Date:</label>
-                            {{ form.modified_date }}
-                        </div>
-                        
-                         <p class="text-warning"><b>Closed Date:</b></p>
-        		        <div class="fieldWrapper">
-                            {{ form.closed_date.errors }}
-                            <label for="{{ form.title.id_for_label }}">Closed Date:</label>
-                            {{ form.closed_date }}
-                        </div>	
-
-        		        <p class="text-warning"><b>Reporter: {{ issue.reporter }}</b></p>
-        		        
-                        <p class="text-warning"><b>Assigned to:</b></p>
-        		        <div class="fieldWrapper">
-                            {{ form.assignee.errors }}
-                            <label for="{{ form.title.id_for_label }}">Assignee:</label>
-                            {{ form.assignee }}
-                        </div>
-
-                        <p class="text-warning"><b>Verifier:</b></p>
-        		        <div class="fieldWrapper">
-                            {{ form.verifier.errors }}
-                            <label for="{{ form.title.id_for_label }}">Verifier:</label>
-                            {{ form.verifier }}
-                        </div>
-
-                        <p class="text-warning" style=""><b>Update Status:</b></p> 
-                        <div class="fieldWrapper">
-                             {{ form.status.errors }}
-                             <label for="{{ form.title.id_for_label }}"></label>
-                             {{ form.status }}
-                        </div>
-                    </div>
-
                 
         		      
 			        <div class="row">

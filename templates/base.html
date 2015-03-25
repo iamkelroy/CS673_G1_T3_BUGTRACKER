@@ -50,10 +50,13 @@ font-size: 16px;">
                 <ul class="nav" id="main-menu">
                     <li>
                         <a  href="/"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
-                    </li>
-                      <li>
-                        <a class="active-menu"   href="/issue/create"><i class="fa fa-desktop fa-3x"></i> Create Issue</a>
-                    </li>
+                        </li>
+                    <li>
+                        <a  href="/issue/create"><i class="fa fa-desktop fa-3x"></i> Create Issue</a>
+                        </li>
+                    <li>
+                        <a  href="/issue/edit/{{ issue.pk }}"><i class="fa fa-desktop fa-3x"></i>Edit Issue</a>
+                        </li>
                     <li>
                     <!-- TODO: Add this back in when we have a valid link.
                     <a  href="/tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Time Tracking</a> 
