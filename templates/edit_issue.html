@@ -16,29 +16,42 @@
         <form action="" method="post">{% csrf_token %}
         {{ form.non_field_errors }}
 
-            <div>
+        <h1># {{ issue.pk }}: {{ issue.title }}</h1>
 
+        <div class="row">
+            <div class="col-md-12">  
+                <input type="submit" value="Update" class="btn btn-primary" style="float: right"/>
+            </div>
+        </div>
+
+        <div style="padding: 10px; border: solid black; width: 70%; height: 400px; float: left; font-size: 18px; ">
+            <div id="resolution" style="width: 50%">
+<!--
                 <p class="text-warning"><b>Issue Number: {{ issue.pk }}</b></p>
+-->
 
                 <div class="fieldWrapper">
                     {{ form.title.errors }}
                     <label for="{{ form.title.id_for_label }}">Title:</label>
                     {{ form.title }}
                 </div>
-
+                <br><br>
+<!--
                 <p class="text-warning" style=""><b>Description: {{ issue.description }}</b></p>
-
+-->
                 <div class="fieldWrapper">
                     {{ form.issue_type.errors }}
                     <label for="{{ form.issue_type.id_for_label }}">Type:</label>
                     {{ form.issue_type }}
                 </div>
+                <br><br>
 
                 <div class="fieldWrapper">
                     {{ form.status.errors }}
                     <label for="{{ form.status.id_for_label }}">Status:</label>
                     {{ form.status }}
                 </div>
+                <br><br>
 
                 <div class="fieldWrapper">
                     {{ form.priority.errors }}
@@ -46,82 +59,80 @@
                     {{ form.priority }}
                 </div>
 
+            </div>
+
+            <div id="resolution" style="float: left; width: 50%">
+
                 <div class="fieldWrapper">
                     {{ form.project.errors }}
                     <label for="{{ form.project.id_for_label }}">Project:</label>
                     {{ form.project }}
                 </div>
-            </div>
-
-            <div>
+                <br><br>
+<!--
                 <p class="text-warning"><b>Submitted Date: {{ issue.submitted_date }}</b></p>
 
                 <p class="text-warning"><b>Last Updated: {{ issue.modified_date }}</b></p>
-
+-->
+<!--
                 <div class="fieldWrapper">
                     {{ form.closed_date.errors }}
                     <label for="{{ form.closed_date_for_label }}">Closed Date:</label>
                     {{ form.closed_date }}
                 </div>
-
+-->
+<!--
                 <p class="text-warning"><b>Reporter: {{ issue.reporter }}</b></p>
-
+-->
                 <div class="fieldWrapper">
                     {{ form.assignee.errors }}
                     <label for="{{ form.assignee.id_for_label }}">Assignee:</label>
                     {{ form.assignee }}
                 </div>
+                <br><br>
 
                 <div class="fieldWrapper">
                     {{ form.verifier.errors }}
                     <label for="{{ form.verifier.id_for_label }}">Verifier:</label>
                     {{ form.verifier }}
                 </div>
-
+<!--
                 <div class="row">
                     <div class="col-md-12">
                         <br><br>    
                         <input type="submit" value="Update" class="btn btn-primary" float="left"/>
                     </div>
                 </div>
+-->
 <!--
                 <input type="submit" value="Update" class="btn btn-primary" float="left"/> -->
             </div>
+        </div>
+
+        <div id="history" style="width: 30%; height: 400px;">
+            <br><br>
+            <Strong>History:</Strong><br><br>
+            <ul>
+                <li>Created By: {{ issue.reporter }} </li><br><br>
+                <li>Assigned To: {{ issue.assignee }} </li><br><br>
+                <li>Date Created: {{ issue.submitted_date}} </li><br><br>
+                <li>Last Updated: {{ issue.modified_date }} </li><br><br>
+            </ul>
+
+            These will be added to the database with each change to the issue<br><br>
+        </div>
+
+        <div id="description" style="width: 100%">
+            <p class="text-warning" style=""><b>Description: {{ issue.description }}</b></p>
+        </div>
 
         </form>
 
 
     </div>
 
-
-
-</div>
-<!--
-
-<div id="page-inner">
-                <div>
-                    <h1 class="bug_name">Edit Issue</h1>
-
-                    <form action="" method="post">{% csrf_token %}
-                    {{ form.non_field_errors }}
-                
-        		      
-			        <div class="row">
-                        <div class="col-md-12">
-			                <br><br>	
-               		    <input type="submit" value="Update" class="btn btn-primary" float="left"/>
-                   	    </div>
-                   	</div>
-
-                   </div>
-
-                    </form>
-
-                </div>
 </div>
 
-                <footer id="footer">
-                     Any information we would like to add to the footer will go here.
-                </footer>
-                -->
+<footer id="footer">Any information we would like to add to the footer will go here.</footer>
+
 {% endblock %}
