@@ -17,7 +17,7 @@ class TestSideBar(LiveServerTestCase):
 
     def test_sidebar(self):
 
-        self.driver.get("localhost:8000/issue/create")
+        self.driver.get("localhost:8081/issue/create")
         self.driver.find_element_by_id("id_username").send_keys("username")
         self.driver.find_element_by_id("id_password").send_keys("password")
         self.driver.find_element_by_id("id_password").send_keys(Keys.ENTER)
@@ -26,7 +26,14 @@ class TestSideBar(LiveServerTestCase):
         sleep(3)
         self.driver.find_element_by_xpath('//*[@href="/admin/login/"]').click()
         sleep(3)
+        # Currently, the admin site changes to django admin site. This has no
+        # links to point back to the originating page.
+        self.driver.get("localhost:8081/")
         self.driver.find_element_by_xpath('//*[@href="/issue/create"]').click()
+        sleep(3)
+        self.driver.find_element_by_xpath('//*[@href="/"]').click()
+        sleep(3)
+        self.driver.find_element_by_xpath('//*[@href="/issue/search"]').click()
         sleep(3)
        
         

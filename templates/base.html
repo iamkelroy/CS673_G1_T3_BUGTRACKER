@@ -37,7 +37,7 @@ padding: 15px 50px 5px 50px;
 float: right;
 font-size: 16px;">
   {% if user.is_authenticated %}
-    Last access : {{ user.last_login }} &nbsp;
+  {{ user.first_name }} {{ user.last_name }} ({{ user.username }})&nbsp;
     <a href="/admin/logout/" class="btn btn-danger square-btn-adjust">Logout</a>
   {% else %}
     <a href="/admin/login/" class="btn btn-danger square-btn-adjust">Login</a>
@@ -53,6 +53,9 @@ font-size: 16px;">
                         </li>
                     <li>
                         <a  href="/issue/create"><i class="fa fa-desktop fa-3x"></i> Create Issue</a>
+                        </li>
+                    <li>
+                        <a  href="/issue/search"><i class="fa fa-desktop fa-3x"></i> Search Issues</a>
                         </li>
                     <li>
                         <a  href="/issue/edit/{{ issue.pk }}"><i class="fa fa-desktop fa-3x"></i>Edit Issue</a>
