@@ -118,6 +118,13 @@ def create_issues(number_of_issues, out_handle=None):
       num: The number of issues to be created.
       out_handle: The output handler for printing.
     """
+    # This extra work for user ids is necessary due to the fact that the
+    # database might have been wiped, but the origin pk for the user still
+    # has been claimed, so we must gather the current pk list to apply them
+    # to create issues.
+    user_ids = []
+    for user in User.objects.all():
+        user_ids.append(user.pk)
     title_count = len(TITLES) - 1
     description_count = len(DESCRIPTIONS) - 1
     if out_handle:
@@ -141,8 +148,7 @@ def create_issues(number_of_issues, out_handle=None):
             # TODO(jdarrieu): Add more randomization to this)
             modified_date=datetime.datetime.now(),
             submitted_date=datetime.datetime.now(),
-            reporter=User.objects.get(
-                pk=random.randint(1, len(USERS) - 1)),
+            reporter=User.objects.get(pk=user_ids[random.randint(0, len(user_ids) - 1)]),
             )
     if out_handle:
         out_handle.write('\n')
