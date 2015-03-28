@@ -29,7 +29,7 @@ First set the database engine (PostgreSQL, MySQL, etc..) in your settings file `
 This command will populate dummy users, a test user and 1000 dummy issues.
 The superuser account username: 'test', password: 'testpw'
 
-`python2.7 manage.py populate_test_data`
+`python2.7 manage.py populate_demo_data`
 
 ### Ready? Go!
 

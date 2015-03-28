@@ -1,9 +1,9 @@
-"""Script for populating test users.
+"""Script for populating demo users.
 
 THIS SCRIPT IS FOR DEVELOPMENT PURPOSES ONLY.
 
 To run:
-        python manage.py populate_test_data
+        python manage.py populate_demo_data
 """
 import datetime
 import optparse
@@ -16,7 +16,7 @@ from issue_tracker.app import models
 from issue_tracker.app import utils
 
 class Command(BaseCommand):
-    """A command for populating the database with test data/users."""
+    """A command for populating the database with demo data/users."""
 
     option_list = BaseCommand.option_list + (
         optparse.make_option(
