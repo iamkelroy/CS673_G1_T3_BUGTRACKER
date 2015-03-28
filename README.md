@@ -40,7 +40,7 @@ There is a set of unit tests and end to end tests (using Selenium) which are ava
 
 `python2.7 ./manage.py test`
 
-#### Populate the db with test data.
+#### Generating coverage results.
 Coverage results from the tests are available via running the following two commands:
 
 `coverage run --source '.' manage.py test`
