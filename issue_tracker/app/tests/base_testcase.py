@@ -11,7 +11,7 @@ from app import utils
 class CommonLiveServerTestCase(LiveServerTestCase):
     """Common methods for all tests."""
 
-    DEFAULT_PAUSE_TIME = 2.0
+    DEFAULT_PAUSE_TIME = 0.25
 
     def setUp(self):
         self.driver = webdriver.Firefox()
@@ -32,10 +32,21 @@ class CommonLiveServerTestCase(LiveServerTestCase):
         self.driver.quit()
         utils.wipe_db()
 
-    def pause(self):
+    def login_to_live(self):
+        self.driver.get('localhost:8081/')
+        self.driver.find_element_by_id(
+            'id_username').send_keys(self.super_user_name)
+        self.driver.find_element_by_id(
+            'id_password').send_keys(self.super_user_pw)
+        self.driver.find_element_by_id('id_password').send_keys(Keys.ENTER)
+
+    def pause(self, seconds=None):
         """Time to pause between clicks.
 
         Args:
           seconds: The number of seconds to pause.
         """
-        time.sleep(self.DEFAULT_PAUSE_TIME)
+        if seconds:
+            time.sleep(seconds)
+        else:
+            time.sleep(self.DEFAULT_PAUSE_TIME)
