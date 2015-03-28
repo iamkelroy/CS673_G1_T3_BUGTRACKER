@@ -4,6 +4,7 @@ import time
 
 from django.test.testcases import LiveServerTestCase
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 from app import utils
 
@@ -31,14 +32,6 @@ class CommonLiveServerTestCase(LiveServerTestCase):
     def tearDown(self):
         self.driver.quit()
         utils.wipe_db()
-
-    def login_to_live(self):
-        self.driver.get('localhost:8081/')
-        self.driver.find_element_by_id(
-            'id_username').send_keys(self.super_user_name)
-        self.driver.find_element_by_id(
-            'id_password').send_keys(self.super_user_pw)
-        self.driver.find_element_by_id('id_password').send_keys(Keys.ENTER)
 
     def pause(self, seconds=None):
         """Time to pause between clicks.
