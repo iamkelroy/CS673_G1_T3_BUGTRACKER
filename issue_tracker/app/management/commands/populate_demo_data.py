@@ -5,15 +5,11 @@ THIS SCRIPT IS FOR DEVELOPMENT PURPOSES ONLY.
 To run:
         python manage.py populate_demo_data
 """
-import datetime
 import optparse
-import random
 
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
-from django.db import IntegrityError
-from issue_tracker.app import models
 from issue_tracker.app import utils
+
 
 class Command(BaseCommand):
     """A command for populating the database with demo data/users."""

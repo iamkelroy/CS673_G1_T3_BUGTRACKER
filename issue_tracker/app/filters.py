@@ -2,6 +2,7 @@
 from issue_tracker.app import models
 from django.db.models import Q
 
+
 class FilterIssueQueryset(object):
     """Filtering the Issue model based on criteria provided.
 
@@ -83,7 +84,7 @@ def filter_issue_results(data):
       A list of issues found.
     """
     query = Q()
-    final_query = [] 
+    final_query = []
     filter_queryset = FilterIssueQueryset(data)
 
     # Based on the parameters from the form, find the appropriate filter
