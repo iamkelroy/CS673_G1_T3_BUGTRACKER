@@ -3,14 +3,11 @@ from django.conf.urls import include
 from django.conf.urls import patterns
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import models as auth_models
 from django.contrib.staticfiles.views import serve
 from django.contrib import admin
 from issue_tracker.app import views as it_views
 from issue_tracker.app import viewsets as it_viewsets
 from rest_framework import routers
-from rest_framework import serializers
-from rest_framework import viewsets
 
 admin.autodiscover()
 

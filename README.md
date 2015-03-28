@@ -25,11 +25,26 @@ First set the database engine (PostgreSQL, MySQL, etc..) in your settings file `
 
 `python2.7 ./manage.py migrate`
 
-#### Create the superuser (admin) account.
-Next, create the adminstrator account up, so we can log into the admin URL:
+#### Populate the db with test data.
+This command will populate dummy users, a test user and 1000 dummy issues.
+The superuser account username: 'test', password: 'testpw'
 
-`python2.7 manage.py createsuperuser`
+`python2.7 manage.py populate_demo_data`
 
 ### Ready? Go!
 
 `python2.7 ./manage.py runserver`
+
+### 4. Testing the app.
+There is a set of unit tests and end to end tests (using Selenium) which are available to verify the app's integrity.  To run the tests:
+
+`python2.7 ./manage.py test`
+
+#### Generating coverage results.
+Coverage results from the tests are available via running the following two commands:
+
+`coverage run --source '.' manage.py test`
+
+To generate the report:
+
+`coverage report`

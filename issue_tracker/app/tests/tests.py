@@ -5,6 +5,7 @@ These tests are to be run when 'manage.py test' is called.
 from django import test
 from issue_tracker.app import views
 
+
 class SimpleViewTest(test.TestCase):
 
     def testSimple(self):

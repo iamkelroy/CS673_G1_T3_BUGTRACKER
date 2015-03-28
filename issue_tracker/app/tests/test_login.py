@@ -1,24 +1,13 @@
-from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from django.contrib.auth.models import User
-from django.test.testcases import LiveServerTestCase
-from time import sleep
-import os
+from app.tests import base_testcase
 
-class LoginTestCase(LiveServerTestCase):
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-        user = User.objects.create_superuser(username="username", password="password", email="tester@test.com")
-        user.save()
 
-    def tearDown(self):
-        self.driver.quit()
-        User.objects.all().delete()
+class LoginTestCase(base_testcase.CommonLiveServerTestCase):
 
     def test_login(self):
-
+        """Verify login for a normal user works."""
         self.driver.get("localhost:8081/issue/create")
-        self.driver.find_element_by_id("id_username").send_keys("username")
-        self.driver.find_element_by_id("id_password").send_keys("password")
+        self.driver.find_element_by_id("id_username").send_keys(self.user_name)
+        self.driver.find_element_by_id("id_password").send_keys(self.user_pw)
         self.driver.find_element_by_id("id_password").send_keys(Keys.ENTER)
-        sleep(5)
+        self.pause()
