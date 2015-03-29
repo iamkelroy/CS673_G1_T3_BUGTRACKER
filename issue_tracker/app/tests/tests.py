@@ -13,6 +13,6 @@ class SimpleViewTest(test.TestCase):
         self.assertEqual(2 + 2, 4)
         self.assertTrue('The world is round.')
 
-    def testExampleView(self):
-        example = views.ExampleView()
-        self.assertEqual('example.html', example.template_name)
+    def testCreateIssueView(self):
+        create_issue = views.CreateIssue()
+        self.assertEqual('create_issue.html', create_issue.template_name)
