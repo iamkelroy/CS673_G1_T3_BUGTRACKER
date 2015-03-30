@@ -10,7 +10,7 @@ from issue_tracker.app.models import PROJECTS
 
 class EmptyChoiceField(forms.ChoiceField):
     """Class to provide a means of having an empty value defaulted.
-    
+
     Class taken from Gist.
       - https://gist.github.com/davidbgk/651080
     """
@@ -34,13 +34,14 @@ class SearchForm(forms.Form):
         required=False,
         help_text='Substring matching in the long description.')
     status = EmptyChoiceField(choices=STATUSES, required=False, empty_label='')
-    issue_type = EmptyChoiceField(choices=TYPES, required=False, empty_label='')
+    issue_type = EmptyChoiceField(choices=TYPES, required=False,
+                                  empty_label='')
     priority = EmptyChoiceField(choices=PRIORITIES, required=False,
                                 empty_label='')
     project = EmptyChoiceField(choices=PROJECTS, required=False,
                                empty_label='')
 
-    # TODO(jdarrieu) Need to look into how to get this hooked up. 
+    # TODO(jdarrieu) Need to look into how to get this hooked up.
     # Date based filtering still not working.
     submitted_date = forms.DateField(
         help_text='Date issue was created. (mm/dd/yyyy)',

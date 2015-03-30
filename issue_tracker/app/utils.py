@@ -148,7 +148,8 @@ def create_issues(number_of_issues, out_handle=None):
             # TODO(jdarrieu): Add more randomization to this)
             modified_date=datetime.datetime.now(),
             submitted_date=datetime.datetime.now(),
-            reporter=User.objects.get(pk=user_ids[random.randint(0, len(user_ids) - 1)]),
+            reporter=User.objects.get(
+                pk=user_ids[random.randint(0, len(user_ids) - 1)]),
             )
     if out_handle:
         out_handle.write('\n')

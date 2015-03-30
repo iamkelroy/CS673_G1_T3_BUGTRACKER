@@ -35,3 +35,16 @@ The superuser account username: 'test', password: 'testpw'
 
 `python2.7 ./manage.py runserver`
 
+### 4. Testing the app.
+There is a set of unit tests and end to end tests (using Selenium) which are available to verify the app's integrity.  To run the tests:
+
+`python2.7 ./manage.py test`
+
+#### Generating coverage results.
+Coverage results from the tests are available via running the following two commands:
+
+`coverage run --source '.' manage.py test`
+
+To generate the report:
+
+`coverage report`
