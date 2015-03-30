@@ -7,4 +7,4 @@ pep8==1.6.1
 pyflakes==0.8.1
 pylint==1.4.1
 mock==1.0.1
-selenium=2.45.0
+selenium==2.45.0
