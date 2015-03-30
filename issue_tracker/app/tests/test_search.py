@@ -9,10 +9,12 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
 
     def create_testable_issue(self):
         self.driver.get("localhost:8081/issue/create")
-        self.driver.find_element_by_id("id_username").send_keys("username")
-        self.driver.find_element_by_id("id_password").send_keys("password")
+        self.driver.find_element_by_id("id_username").send_keys(
+            self.super_user_name)
+        self.driver.find_element_by_id("id_password").send_keys(
+            self.super_user_pw)
         self.driver.find_element_by_id("id_password").send_keys(Keys.ENTER)
-        sleep(2)
+        self.pause()
         self.driver.find_element_by_xpath('//*[@id="id_project"]/option[2]').click()
         self.driver.find_element_by_xpath('//*[@id="id_issue_type"]/option[2]').click()
         self.driver.find_element_by_id("id_title").send_keys("Searchable Title")
@@ -27,14 +29,14 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
         self.create_testable_issue()
         destination = self.driver.current_url
         # goes to the search page
-        self.driver.find_element_by_css_selector("#main-menu > li:nth-child(3) > a:nth-child(1)").click
-
+        self.driver.find_element_by_css_selector("#main-menu > li:nth-child(3) > a:nth-child(1)").click()
+        sleep(2)
         # searches on title field
         self.driver.find_element_by_id("id_title").send_keys("Searchable")
         self.driver.find_element_by_css_selector("#page-wrapper > form:nth-child(2) > input:nth-child(3)").click()
         sleep(2)
         title = self.driver.find_element_by_css_selector("#page-wrapper > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a:nth-child(1)")
-        assert title.text == "Searchable Issue"
+        assert title.text == "Searchable Title"
         title.click()
         sleep(2)
         assert self.driver.current_url == destination
@@ -47,12 +49,16 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
         self.create_testable_issue()
         destination = self.driver.current_url
 
-        self.find_element_by_css_selector("#id_priority > option:nth-child(3)").click()
-        self.find_element_by_css_selector("#id_description").send_keys("droids")
+        self.driver.find_element_by_css_selector("#main-menu > li:nth-child(3) > a:nth-child(1)").click()
+
+        self.driver.find_element_by_css_selector("#id_priority").click()
+        self.driver.find_element_by_css_selector("#id_priority > option:nth-child(3)").click()
+        sleep(2)
+        self.driver.find_element_by_css_selector("#id_description").send_keys("droids")
         self.driver.find_element_by_css_selector("#page-wrapper > form:nth-child(2) > input:nth-child(3)").click()
         sleep(2)
         title = self.driver.find_element_by_css_selector("#page-wrapper > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a:nth-child(1)")
-        assert title.text == "Searchable Issue"
+        assert title.text == "Searchable Title"
         title.click()
         sleep(2)
         assert self.driver.current_url == destination
