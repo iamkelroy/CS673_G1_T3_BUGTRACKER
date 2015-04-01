@@ -1,5 +1,6 @@
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
+import unittest
 
 
 class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
@@ -45,3 +46,8 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
         self.assertNotEqual(
             title,
             self.driver.find_element_by_class_name('bug_name').text)
+
+    @unittest.skip("to be built once edit feature is resolved")
+    def test_edit_visibility
+        return
+        # this test is not active, but should ensure we can only reach edit page when an issue is selected
