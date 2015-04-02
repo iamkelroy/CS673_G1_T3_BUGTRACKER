@@ -62,15 +62,18 @@ class Issue(models.Model):
     def get_absolute_url(self):
         return reverse('view_issue', kwargs={'pk': self.pk})
 
-class Comment(models.Model):
+
+class IssueComment(models.Model):
     comment = models.TextField(max_length=2000)
-    issue_id = models.ForeignKey(Issue, related_name='comments', blank=True, null=True)
+    issue_id = models.ForeignKey(Issue, related_name='comments',
+                                 blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True, editable=False)
-    poster = models.ForeignKey(auth_models.User, related_name='comments', blank=True,
+    poster = models.ForeignKey(auth_models.User,
+                               related_name='comments', blank=True,
                                null=True)
 
     def __unicode__(self):
-        return self.pk
-    
+        return str(self.pk)
+
     def get_absolute_url(self):
-        return reverse('view_issue', kwargs={'pk': self.pk})
+        return reverse('view_issue', kwargs={'pk': self.issue_id})

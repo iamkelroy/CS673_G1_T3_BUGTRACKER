@@ -47,7 +47,8 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
             title,
             self.driver.find_element_by_class_name('bug_name').text)
 
-    @unittest.skip("to be built once edit feature is resolved")
-    def test_edit_visibility
+    @unittest.skip('To be built once edit feature is resolved')
+    def test_edit_visibility(self):
+        # this test is not active, but should ensure we can only reach edit
+        # page when an issue is selected
         return
-        # this test is not active, but should ensure we can only reach edit page when an issue is selected
