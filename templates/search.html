@@ -55,10 +55,18 @@ th, td:nth-child(2) { text-align: left; }
   <h2>Issue Search</h2>
     
   <form action="" method="POST">{% csrf_token %}
-    <table>{{ form }}</table>
+    <table>{{ form.as_p }}</table>
     <input type="submit" value="Submit" />
   </form>
 {% endif %}
 
+<!--JQurey DatePicker -->
+<script type="text/javascript">
+  $(function() {   
+    $("#{{ form.submitted_date.id_for_label }}").datepicker({dateFormat : "mm/dd/yy"});
+    $("#{{ form.modified_date.id_for_label }}").datepicker({dateFormat : "mm/dd/yy"});
+    $("#{{ form.closed_date.id_for_label }}").datepicker({dateFormat : "mm/dd/yy"});
+  });</script>
+<!-- DatePicker -->
     
 {% endblock %}

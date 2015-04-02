@@ -13,7 +13,15 @@
     <!-- CUSTOM STYLES-->
     <link href="{% static "css/joe_custom_style.css" %}" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <!-- Add jQurey UI-CSS and ui-js for date picker-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!--Add jQurey UI-CSS and ui-js for date picker -->
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script> 
    {% block header_additions %}{% endblock %}
 </head>
 <body>
@@ -82,8 +90,8 @@ font-size: 16px;">
         </div>
     </div>
 </body>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="{% static "js/bootstrap.min.js" %}"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
-
+<!-- <script src="http://code.jquery.com/jquery.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script> -->
+<!-- <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+  -->
 </html>
