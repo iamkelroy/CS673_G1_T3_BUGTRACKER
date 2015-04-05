@@ -49,8 +49,27 @@ class SearchIssues(FormView):
         data = filters.filter_issue_results(form.cleaned_data)
         if not data:
             data = []
+            error = "No Data" #error text message
         return self.render_to_response({'object_list': data,
-                                        'page': 'Issue Search'})
+                                        'page': 'Issue Search',
+                                        'form': form #resend form to search page
+                                        })
+
+    #Ted:I add this but it is not work
+    def form_invalid(self, form):
+        data = filters.filter_issue_results(form.cleaned_data)
+        if not data:
+            data = []
+            error = "No Data"
+            # return super(SearchIssues, self).form_valid(form)
+        
+        return self.render_to_response({'object_list': data,
+                                            'page': 'Issue Search',
+                                            'form': form ,
+                                            'NoDataError': error
+                                            })
+        #return super(SearchIssues, self).form_invalid(form)
+    #testing form_invalid funcation
 
 
 class MultipleIssues(ListView):
