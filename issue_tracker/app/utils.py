@@ -48,6 +48,17 @@ TITLES = (
     "I want my bikeshed painted BLUE though!",
     )
 
+COMMENTS = (
+    "I just wanted to say all of this stuff is a buncha hooey.",
+    "Legal has agreed with me that this is actually not an issue."
+    "  Please close.",
+    "I have considered carefully everything you said and discarded it"
+    " as both non-factual and fool-hearty.  Next time try to appeal to my"
+    " cold rational brain.",
+    "This is an automated statement: 42.",
+    "I forgot to say in the description.. What a wonderful world.",
+    )
+
 
 def create_user(first, last, username, out_handle=None):
     """Create the django super user account.
@@ -109,6 +120,11 @@ def create_super_user(first, last, username, out_handle=None):
                              % username)
 
 
+def get_random_date():
+    return datetime.datetime.now() + datetime.timedelta(
+        days=random.randint(-365, 365))
+
+
 def create_issues(number_of_issues, out_handle=None):
     """Creating some number of random issues.
 
@@ -133,24 +149,41 @@ def create_issues(number_of_issues, out_handle=None):
         if out_handle:
             out_handle.write('.', ending='')
             out_handle.flush()
-        models.Issue.objects.create(
+        # Go through a few extra hoops to make sure that if we create a issue
+        # with any status other than new, it has been assigned to someone.
+        status = models.STATUSES[
+            random.randint(1, len(models.STATUSES) - 1)][0]
+        if status != 'new':
+            assignee = User.objects.get(
+                pk=user_ids[random.randint(0, len(user_ids) - 1)])
+        else:
+            assignee = None
+        issue = models.Issue.objects.create(
             title=TITLES[random.randint(0, title_count)],
             description=DESCRIPTIONS[
                 random.randint(0, description_count)],
             issue_type=models.TYPES[
                 random.randint(1, len(models.TYPES) - 1)][0],
-            status=models.STATUSES[
-                random.randint(1, len(models.STATUSES) - 1)][0],
+            status=status,
             priority=models.PRIORITIES[
                 random.randint(1, len(models.PRIORITIES) - 1)][0],
             project=models.PROJECTS[
                 random.randint(1, len(models.PROJECTS) - 1)][0],
-            # TODO(jdarrieu): Add more randomization to this)
-            modified_date=datetime.datetime.now(),
-            submitted_date=datetime.datetime.now(),
+            modified_date=get_random_date(),
+            submitted_date=get_random_date(),
             reporter=User.objects.get(
                 pk=user_ids[random.randint(0, len(user_ids) - 1)]),
+            assignee=assignee,
             )
+        comment_count = len(COMMENTS) - 1
+        for _ in xrange(1, random.randint(1, 10)):
+            models.IssueComment.objects.create(
+                comment=COMMENTS[random.randint(0, comment_count)],
+                issue_id=issue,
+                date=get_random_date(),
+                poster=User.objects.get(
+                    pk=user_ids[random.randint(0, len(user_ids) - 1)]))
+
     if out_handle:
         out_handle.write('\n')
 
