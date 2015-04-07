@@ -152,7 +152,7 @@ def create_issues(number_of_issues, out_handle=None):
         # Go through a few extra hoops to make sure that if we create a issue
         # with any status other than new, it has been assigned to someone.
         status = models.STATUSES[
-            random.randint(1, len(models.STATUSES) - 1)][0]
+            random.randint(0, len(models.STATUSES) - 1)][0]
         if status != 'new':
             assignee = User.objects.get(
                 pk=user_ids[random.randint(0, len(user_ids) - 1)])
@@ -163,12 +163,12 @@ def create_issues(number_of_issues, out_handle=None):
             description=DESCRIPTIONS[
                 random.randint(0, description_count)],
             issue_type=models.TYPES[
-                random.randint(1, len(models.TYPES) - 1)][0],
+                random.randint(0, len(models.TYPES) - 1)][0],
             status=status,
             priority=models.PRIORITIES[
-                random.randint(1, len(models.PRIORITIES) - 1)][0],
+                random.randint(0, len(models.PRIORITIES) - 1)][0],
             project=models.PROJECTS[
-                random.randint(1, len(models.PROJECTS) - 1)][0],
+                random.randint(0, len(models.PROJECTS) - 1)][0],
             modified_date=get_random_date(),
             submitted_date=get_random_date(),
             reporter=User.objects.get(
