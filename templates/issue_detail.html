@@ -35,7 +35,7 @@
 -->
                 <br>
 
-                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>Type: {{ issue.type }}</b></p>
+                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>Type: {{ issue.issue_type }}</b></p>
 <!--
                 <div class="fieldWrapper">
                     {{ form.issue_type.errors }}
@@ -77,7 +77,14 @@
 -->
                 <br>
 
-                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>Assignee: {{ issue.assignee }}</b></p>
+                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>
+                        Assignee: 
+                        {% if issue.assignee %}
+                          <a href="mailto:{{ issue.assignee.email }}">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
+                        {% else %}
+                          {{ issue.assignee }}
+                        {% endif %}
+                </b></p>
 <!--
                 <div class="fieldWrapper">
                     {{ form.assignee.errors }}
@@ -88,7 +95,14 @@
                 <br>
 
 
-                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>Verifier: {{ issue.verifier }}</b></p>
+                <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>
+                        Verifier:
+                        {% if issue.verifier %}
+                          <a href="mailto:{{ issue.verifier.email }}">{{ issue.verifier.first_name }} {{ issue.verifier.last_name }} ({{ issue.verifier }})</a></li><br><br>
+                        {% else %}
+                          {{ issue.verifier }}
+                        {% endif %}
+                        </b></p>
 <!--
                 <div class="fieldWrapper">
                     {{ form.verifier.errors }}
@@ -103,8 +117,12 @@
             <br><br>
             <Strong>History:</Strong><br><br>
             <ul>
-                <li>Created By: {{ issue.reporter }} </li><br><br>
-                <li>Assigned To: {{ issue.assignee }} </li><br><br>
+                <li>Created By: <a href="mailto:{{ issue.reporter.email }}">{{ issue.reporter.first_name }} {{ issue.reporter.last_name }} ({{ issue.reporter }})</a></li><br><br>
+                {% if issue.assignee %}
+                  <li>Assigned To: <a href="mailto:{{ issue.assignee.email }}">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
+                {% else %}
+                  <li>Assigned To: {{ issue.assignee }})</li><br><br>
+                {% endif %}
                 <li>Date Created: {{ issue.submitted_date}} </li><br><br>
                 <li>Last Updated: {{ issue.modified_date }} </li><br><br>
             </ul>
@@ -114,8 +132,7 @@
 
         <div id="description" style="width: 100%; font-size: 18px;">
             <textarea style="display:none;" cols="40" id="id_description" maxlength="2000" name="description" rows="10">{{ issue.description }}</textarea>
-            <p class="text-warning" style="color: #A70303;"><b>Description: </b></p>
-            {{ issue.description }}
+            <p class="text-warning" style="color: #A70303;"><b>Description: </b></p><pre>{{ issue.description }}</pre>
         </div>
 <!--
         </form>
