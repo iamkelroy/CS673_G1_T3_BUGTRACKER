@@ -137,19 +137,37 @@
 <!--
         </form>
 -->
-
     </div>
 
-    <form>
+    <form action="" method="POST">{% csrf_token %}
         <p class="text-warning" style="color: #A70303;"><b>Status Updates/Comments: </b></p>
         Contribute:<br>
-        <textarea name="Comment" rows="8" cols="50" padding="5">new comment</textarea>
+ <!--       <textarea name="Comment" rows="8" cols="50" padding="5">new comment</textarea>  -->
+        {{ form.comment.errors }}
+        <label for="{{ form.comment.id_for_label }}"></label>
+        {{ form.comment }}
+
         <br><br>
-        <input type="submit" value="Submit" class="btn btn-primary" style="background-color: #A70303"/><br><br>
+        <input type="submit" value="Post Comment" class="btn btn-primary" style="background-color: #A70303"/><br><br>
  <!--           Need to finish coding the submit function to add the new comment to the lists of comments and display it in the below field.
  -->       
         <div style="border: solid black;">
-            <textarea cols="150" id="id_description" maxlength="2000" name="comments" rows="10"></textarea>
+ <!--           <textarea cols="150" id="id_description" maxlength="2000" name="comments" rows="10"></textarea>  -->
+                {% if comment_list %}
+                    <h3>Comments ralated to {{issue.title}}</h3>
+                    {% for comment in comment_list %}
+    
+                        Date: {{comment.date}}
+                        Poster: {{comment.poster}}<br>
+                        Comment:
+                        <pre>{{comment.comment}}</pre>
+                        
+                    
+                    {% endfor%}
+                {% else %}
+                <h3>There are no comment</h3>
+                {% endif %}
+            
 <!--            Could probably delete the above "textarea" entry depending on how the comments are rendered.
 -->            
         </div>

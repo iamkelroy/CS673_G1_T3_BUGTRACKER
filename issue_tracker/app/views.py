@@ -2,15 +2,17 @@
 import datetime
 
 from django.http import HttpResponseRedirect
+from django.http import HttpResponseForbidden
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import FormView
+from django.views.generic.edit import FormMixin
 from issue_tracker.app import forms
 from issue_tracker.app import models as it_models
 from issue_tracker.app import filters
-
+from django.core.urlresolvers import reverse
 
 class CreateIssue(CreateView):
     model = it_models.Issue
@@ -35,10 +37,41 @@ class EditIssue(UpdateView):
     template_name = 'edit_issue.html'
 
 
-class ViewIssue(DetailView):
+class ViewIssue(DetailView, FormMixin):
     model = it_models.Issue
     template_name = 'issue_detail.html'
+    form_class = forms.CommentForm
 
+    def get_context_data(self, **kwargs):
+        context = super(ViewIssue, self).get_context_data(**kwargs)
+        form_class = self.get_form_class()
+        context['comment_list'] = it_models.IssueComment.objects.filter(issue_id=self.object)
+        #context['form']=forms.CommentForm
+        context['form'] = self.get_form(form_class)
+        return context
+    
+    def get_success_url(self):
+        return reverse('view_issue', kwargs={'pk':self.object.pk})
+
+    def post(self, request, *args, **kwargs ):
+        if not request.user.is_authenticated():
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+        
+    def form_valid(self, form):
+        new_comment = form.save(commit=False)
+        new_comment.issue_id = self.object 
+        new_comment.poster = self.request.user
+        new_comment.date = datetime.datetime.now()
+        new_comment.save()
+        return super(ViewIssue, self).form_valid(form)
+#        return HttpResponseRedirect(new_comment.get_absolute_url())
 
 class SearchIssues(FormView):
     form_class = forms.SearchForm
