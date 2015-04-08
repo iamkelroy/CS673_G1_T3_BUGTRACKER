@@ -9,6 +9,7 @@ from issue_tracker.app.models import PRIORITIES
 from issue_tracker.app.models import PROJECTS
 from issue_tracker.app import models as it_models
 
+
 class EmptyChoiceField(forms.ChoiceField):
     """Class to provide a means of having an empty value defaulted.
 
@@ -63,6 +64,7 @@ class SearchForm(forms.Form):
                                       required=False)
     verifier = forms.ModelChoiceField(queryset=User.objects.all(),
                                       required=False)
+
 
 class CommentForm(ModelForm):
     class Meta:
