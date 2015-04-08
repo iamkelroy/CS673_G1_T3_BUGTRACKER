@@ -6,63 +6,63 @@
 
 <!-- Show Searching Result by multi_issue display__Start -->
 {% if object_list %}
-<style>
-table {
-	border: 1px solid black;
-	}
-th, td {
-	border: 1px solid black;
-	padding: .2em .7em;
-	text-align: right;}
-th, td:nth-child(2) { text-align: left; }
-</style>
+          <style>
+            table {
+            	border: 1px solid black;
+            	}
+            th, td {
+            	border: 1px solid black;
+            	padding: .2em .7em;
+            	text-align: right;}
+            th, td:nth-child(2) { text-align: left; }
+          </style>
 
 
-<table>
-<thead>
-<tr>
-<th>Issue Number</th>
-<th>Issue Title</th>
-<th>Type</th>
-<th>Issue Status</th>
-<th>Priority</th>
-<th>Last Updated</th>
-<th>Assigned To</th>
-</tr>
-</thead>
-<tbody>
-{% if object_list %}	
-  {% for issue in object_list %}
-   <tr>
-   <td>{{ issue.pk }}</td>
-   <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
-   <td>{{ issue.issue_type }}</td>
-   <td>{{ issue.status }}</td>
-   <td>{{ issue.priority }}</td>
-   <td>{{ issue.modified_date }}</td>
-   <td>{{ issue.assignee }}</td>
-   </tr>
-  {% endfor %}
-{% else %}
-    <h3>There are no issues currently entered.</h3>
-{% endif %}
-</tbody>
-<tfoot>
+        <table>
+          <thead>
+            <tr>
+            <th>Issue Number</th>
+            <th>Issue Title</th>
+            <th>Type</th>
+            <th>Issue Status</th>
+            <th>Priority</th>
+            <th>Last Updated</th>
+            <th>Assigned To</th>
+            </tr>
+          </thead>
+            <tbody>
+                {% if object_list %}	
+                  {% for issue in object_list %}
+                   <tr>
+                   <td>{{ issue.pk }}</td>
+                   <td><a href="/issue/view/{{issue.pk}}">{{ issue.title }}</a></td>
+                   <td>{{ issue.issue_type }}</td>
+                   <td>{{ issue.status }}</td>
+                   <td>{{ issue.priority }}</td>
+                   <td>{{ issue.modified_date }}</td>
+                   <td>{{ issue.assignee }}</td>
+                   </tr>
+                  {% endfor %}
+                {% else %}
+                    <h3>There are no issues currently entered.</h3>
+                {% endif %}
+            </tbody>
+            <tfoot>
 
-</tfoot>
-</table>
+            </tfoot>
+        </table>
 <!-- Show Searching Result by multi_issue display__End -->
 
-{% else %}
-<!-- search page display_Start-->
-<div id="page-inner">
- <h1 class="bug_name" clear="both"><b>[ Issue Search ]</b></h1>
+{% elif form%}
+ <!-- search page display_Start-->
+ <div id="page-inner">
+  <h1 class="bug_name" clear="both"><b>[ Issue Search ]</b></h1>
     
-  {% if NoDataError %}
+           <!-- {% if NoDataError %}
             <div class="alert alert-danger" role="alert">{{ NoDataError }}TEST</div>
-           {% endif %}
+           {% endif %} -->
 
-<!-- Left frame_Start -->
+  <!-- Left frame_Start -->
   <div style="padding: 10px; border: solid purple; width: 50%; height: 430px; float: left; font-size: 18px; ">
     <div id="resolution" style="width: 100%">
          <form action="" method="POST">{% csrf_token %}
@@ -126,8 +126,8 @@ th, td:nth-child(2) { text-align: left; }
 
          
 
-<!-- Right frame -->
-<div style="padding: 10px; border: solid purple; width: 43%; height: 400px; float: right; font-size: 12px; ">
+  <!-- Right frame -->
+  <div style="padding: 10px; border: solid purple; width: 43%; height: 400px; float: right; font-size: 12px; ">
     <div id="resolution" style="width: 50%"> 
             
                <p class="text-warning">
@@ -218,10 +218,20 @@ th, td:nth-child(2) { text-align: left; }
         });</script>
       <!-- DatePicker_End -->
 
-  </div> 
- </div><!-- Right frame_End -->
-</div>
-<!-- search page display_END -->    
+    </div> 
+   </div><!-- Right frame_End -->
+  </div>
+  <!-- search page display_END -->    
 {% endif %}
-    
+
+        {% if object_list %}
+
+        {% else %}
+  
+           <div>
+             <p class="bg-warning"><h2> Invaild input or No data !!</h2></p>
+           </div>
+
+        {% endif %}
+
 {% endblock %}

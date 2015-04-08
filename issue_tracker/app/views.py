@@ -89,7 +89,7 @@ class SearchIssues(FormView):
         return self.render_to_response({'object_list': data,
                                         'page': 'Issue Search',
                                         # resend form to search page
-                                        'form': form,
+                                        #'form': form,
                                         })
 
     # TODO(Ted): I add this but it does not work
