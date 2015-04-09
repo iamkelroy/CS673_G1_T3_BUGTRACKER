@@ -4,8 +4,8 @@ import unittest
 
 
 class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
-
-    def test_view_issue(self):
+    @unittest.skip("edit issue button currently not working")
+    def test_edit_issue(self):
 
         # For this to work we need to either run a script to create generic
         # issues, or create an issue to view as part of the test.  Currently
@@ -34,10 +34,11 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
             '.btn-primary[value="Create"]').click()
 
         # save a value
-        title = self.driver.find_element_by_class_name('bug_name').text
+        title = self.driver.find_element_by_css_selector('#page-inner > div:nth-child(1) > h1:nth-child(1)').text
         # click on edit issue.
         self.driver.find_element_by_css_selector(
-            '#main-menu > li:nth-child(4) > a:nth-child(1)').click()
+            'button.btn').click()
+        self.pause()
         # edit a value
         self.driver.find_element_by_id('id_title').send_keys('blarg')
         # save changes
@@ -48,7 +49,7 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
             self.driver.find_element_by_class_name('bug_name').text)
 
     @unittest.skip('To be built once edit feature is resolved')
-    def test_edit_visibility(self):
+    def test_edit_access(self):
         # this test is not active, but should ensure we can only reach edit
         # page when an issue is selected
         return

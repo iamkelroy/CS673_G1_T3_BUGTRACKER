@@ -1,7 +1,8 @@
 import unittest
-
+import time
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
+import sys
 
 
 class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
@@ -37,12 +38,12 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
         destination = self.driver.current_url
         # goes to the search page
         self.driver.find_element_by_css_selector(
-            '#main-menu > li:nth-child(3) > a:nth-child(1)').click()
+            '#main-menu > li:nth-child(6) > a:nth-child(1)').click()
         self.pause()
         # searches on title field
         self.driver.find_element_by_id('id_title').send_keys('Searchable')
         self.driver.find_element_by_css_selector(
-            '#page-wrapper > form:nth-child(2) > input:nth-child(3)').click()
+            '.btn-primary').click()
         self.pause()
         title = self.driver.find_element_by_css_selector(
             '#page-wrapper > table:nth-child(2) > tbody:nth-child(2) > '
@@ -61,8 +62,9 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
         self.create_testable_issue()
         destination = self.driver.current_url
 
+        self.pause()
         self.driver.find_element_by_css_selector(
-            '#main-menu > li:nth-child(3) > a:nth-child(1)').click()
+            '#main-menu > li:nth-child(6) > a:nth-child(1)').click()
 
         self.driver.find_element_by_css_selector('#id_priority').click()
         self.driver.find_element_by_css_selector(
@@ -71,7 +73,7 @@ class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
         self.driver.find_element_by_css_selector(
             '#id_description').send_keys('droids')
         self.driver.find_element_by_css_selector(
-            '#page-wrapper > form:nth-child(2) > input:nth-child(3)').click()
+            '.btn-primary').click()
         self.pause()
         title = self.driver.find_element_by_css_selector(
             '#page-wrapper > table:nth-child(2) > tbody:nth-child(2) > '
