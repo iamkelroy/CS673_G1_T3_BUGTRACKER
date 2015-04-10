@@ -40,10 +40,15 @@ class EditIssue(UpdateView):
     def form_valid(self, form):
         if form.has_changed():
             current_issue = form.save(commit=False)
-            text="Issue is modified:\n"
+            text="Issue is modified:"
             for field_name, field in form.fields.items():
                 if field_name in form.changed_data:
-                    text = text + field_name + ": old value -> "+form.cleaned_data[field_name]
+                    if field_name=="assignee":
+                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name].username
+                    elif field_name=="verifier":
+                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name].username
+                    else:
+                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name]
                     #text=text+"//Type changed from "+self.object.issue_type+" to "+form.cleaned_data[field_name]
                     #text=text+"\\"+form.cleaned_data[field_name]
             
