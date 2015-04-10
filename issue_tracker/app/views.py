@@ -37,6 +37,26 @@ class EditIssue(UpdateView):
               'assignee', 'status', 'verifier']
     template_name = 'edit_issue.html'
 
+    def form_valid(self, form):
+        if form.has_changed():
+            current_issue = form.save(commit=False)
+            text="Issue is modified:\n"
+            for field_name, field in form.fields.items():
+                if field_name in form.changed_data:
+                    text = text + field_name + ": old value -> "+form.cleaned_data[field_name]
+                    #text=text+"//Type changed from "+self.object.issue_type+" to "+form.cleaned_data[field_name]
+                    #text=text+"\\"+form.cleaned_data[field_name]
+            
+            current_issue.save()
+            new_comment =it_models.IssueComment(comment=text,
+                                                issue_id = self.object,
+                                                poster=self.request.user,
+                                                date=datetime.datetime.now(),
+                                                is_comment=False)
+            new_comment.save()
+            
+        return HttpResponseRedirect(self.object.get_absolute_url())
+
 
 class ViewIssue(DetailView, FormMixin):
     model = it_models.Issue
@@ -47,7 +67,7 @@ class ViewIssue(DetailView, FormMixin):
         context = super(ViewIssue, self).get_context_data(**kwargs)
         form_class = self.get_form_class()
         context['comment_list'] = it_models.IssueComment.objects.filter(
-            issue_id=self.object)
+            issue_id=self.object).order_by('-date')
         # context['form'] = forms.CommentForm
         context['form'] = self.get_form(form_class)
         return context
@@ -71,6 +91,7 @@ class ViewIssue(DetailView, FormMixin):
         new_comment.issue_id = self.object
         new_comment.poster = self.request.user
         new_comment.date = datetime.datetime.now()
+        new_comment.is_comment = True
         new_comment.save()
         return super(ViewIssue, self).form_valid(form)
         # return HttpResponseRedirect(new_comment.get_absolute_url())

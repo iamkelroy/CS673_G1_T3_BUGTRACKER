@@ -4,7 +4,21 @@
 {% block header_title %}Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}{% endblock %}
 
 {% block content %}
-
+<script>
+    $(function() {
+        $('textarea').each(function() {
+            $(this).height($(this).prop('scrollHeight'));
+        });
+    });
+</script>
+<style>
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0;
+} 
+</style>
 <div id="page-inner">
     <div>
 <!--       
@@ -155,10 +169,15 @@
                 {% if comment_list %}
                     <p class="text-warning" style="color: #A70303;"><b>Status Updates/Comments: </b></p>
                     {% for comment in comment_list %}
-                    <a href="#{{ forloop.counter0 }}">#{{ forloop.counter0 }}</a>, 
-                      <a href="mailto:{{ comment.poster.email }}">{{ comment.poster.first_name }} {{ comment.poster.last_name }} ({{ comment.poster }})</a>, <i>{{comment.date}}</i><br/>
-                      <pre>{{comment.comment}}</pre>
-                    
+                        
+                            <a href="#{{ forloop.counter0 }}">#{{ forloop.counter0 }}</a>, 
+                            <a href="mailto:{{ comment.poster.email }}">{{ comment.poster.first_name }} {{ comment.poster.last_name }} ({{ comment.poster }})</a>, <i>{{comment.date}}</i><br/>
+                        {% if comment.is_comment%}
+                            <pre style=>{{ comment.comment }}</pre>
+                        {% else %}
+                        <textarea cols="80" readonly =true> {{ comment.comment }}</textarea>
+                           <br/>
+                        {% endif %}
                     {% endfor%}
                 {% else %}
                 <h3>There are no comments.</h3>

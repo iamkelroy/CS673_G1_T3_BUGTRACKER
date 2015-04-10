@@ -71,6 +71,7 @@ class IssueComment(models.Model):
     poster = models.ForeignKey(auth_models.User,
                                related_name='comments', blank=True,
                                null=True)
+    is_comment = models.BooleanField(default=True)
 
     def __unicode__(self):
         return str(self.pk)

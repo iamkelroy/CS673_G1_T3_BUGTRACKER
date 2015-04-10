@@ -183,6 +183,7 @@ def create_issues(number_of_issues, out_handle=None):
                 date=get_random_date(),
                 poster=User.objects.get(
                     pk=user_ids[random.randint(0, len(user_ids) - 1)]))
+                #,is_comment=True)
 
     if out_handle:
         out_handle.write('\n')
