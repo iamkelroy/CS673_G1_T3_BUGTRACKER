@@ -138,3 +138,12 @@ class SearchIssues(FormView):
 class MultipleIssues(ListView):
     model = it_models.Issue
     template_name = 'multi_issue.html'
+
+
+class AssigneeListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            assignee=self.request.user).filter(
+                status__in=[x[0] for x in it_models.OPEN_STATUSES])
+        return queryset

@@ -2,16 +2,21 @@ from django.contrib.auth import models as auth_models
 from django.core.urlresolvers import reverse
 from django.db import models
 
-STATUSES = (
+OPEN_STATUSES = (
     ('new', 'New',),
     ('assigned', 'Assigned',),
     ('accepted', 'Accepted',),
+    )
+
+CLOSED_STATUSES = (
     ('fixed', 'Fixed',),
     ('verified', 'Verified',),
     ('wai', 'Working as Intended',),
     ('obsolete', 'Obsolete',),
     ('duplicate', 'Duplicate',),
     )
+
+STATUSES = (OPEN_STATUSES + CLOSED_STATUSES)
 
 TYPES = (
     ('bug', 'Bug',),

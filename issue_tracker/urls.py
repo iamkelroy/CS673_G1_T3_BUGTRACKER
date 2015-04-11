@@ -22,7 +22,7 @@ urlpatterns = patterns(
     # Index page:
     # TODO(jdarrieu): Get it to point to individual issues.
     url(r'^$',
-        login_required(it_views.MultipleIssues.as_view()),
+        login_required(it_views.AssigneeListIssuesView.as_view()),
         name='issue_index'),
 
     # static files path
@@ -38,6 +38,9 @@ urlpatterns = patterns(
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
 
+    url(r'^issue/assigned/$',
+        login_required(it_views.AssigneeListIssuesView.as_view()),
+        name='assigned_issues'),
     url(r'^issue/multi/$',
         login_required(it_views.MultipleIssues.as_view()),
         name='multi_issue'),
