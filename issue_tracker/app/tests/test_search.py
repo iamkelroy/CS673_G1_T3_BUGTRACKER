@@ -1,8 +1,6 @@
 import unittest
-import time
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
-import sys
 
 
 class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):

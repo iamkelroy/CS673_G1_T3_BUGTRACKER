@@ -34,7 +34,8 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
             '.btn-primary[value="Create"]').click()
 
         # save a value
-        title = self.driver.find_element_by_css_selector('#page-inner > div:nth-child(1) > h1:nth-child(1)').text
+        title = self.driver.find_element_by_css_selector(
+            '#page-inner > div:nth-child(1) > h1:nth-child(1)').text
         # click on edit issue.
         self.driver.find_element_by_css_selector(
             'button.btn').click()

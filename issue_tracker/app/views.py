@@ -40,26 +40,25 @@ class EditIssue(UpdateView):
     def form_valid(self, form):
         if form.has_changed():
             current_issue = form.save(commit=False)
-            text="Issue is modified:"
+            text = ['Issue is modified:']
             for field_name, field in form.fields.items():
                 if field_name in form.changed_data:
-                    if field_name=="assignee":
-                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name].username
-                    elif field_name=="verifier":
-                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name].username
+                    if field_name in ['assignee', 'verifier']:
+                        text.append('%s: old value -> %s'
+                                    % (field_name,
+                                       form.cleaned_data[field_name].username))
                     else:
-                        text = text + "\n"+field_name + ": old value -> "+form.cleaned_data[field_name]
-                    #text=text+"//Type changed from "+self.object.issue_type+" to "+form.cleaned_data[field_name]
-                    #text=text+"\\"+form.cleaned_data[field_name]
-            
+                        text.append('%s: old value -> %s'
+                                    % (field_name,
+                                       form.cleaned_data[field_name]))
+
             current_issue.save()
-            new_comment =it_models.IssueComment(comment=text,
-                                                issue_id = self.object,
-                                                poster=self.request.user,
-                                                date=datetime.datetime.now(),
-                                                is_comment=False)
+            new_comment = it_models.IssueComment(comment='\n'.join(text),
+                                                 issue_id=self.object,
+                                                 poster=self.request.user,
+                                                 date=datetime.datetime.now(),
+                                                 is_comment=False)
             new_comment.save()
-            
         return HttpResponseRedirect(self.object.get_absolute_url())
 
 
@@ -115,7 +114,7 @@ class SearchIssues(FormView):
         return self.render_to_response({'object_list': data,
                                         'page': 'Issue Search',
                                         # resend form to search page
-                                        #'form': form,
+                                        # 'form': form,
                                         })
 
     # TODO(Ted): I add this but it does not work
