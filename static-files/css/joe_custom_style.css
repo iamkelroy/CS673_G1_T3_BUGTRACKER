@@ -438,5 +438,17 @@ footer {
 }
    
 }
+/*==============================================
+    SORT TABLE CSS     
+    =============================================*/
+table.sortable thead {
+    background-color: firebrick;
+    color: whitesmoke;
+    font-weight: bolder;
+    cursor:  all-scroll;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25B4\25BE" 
+}
 
 
