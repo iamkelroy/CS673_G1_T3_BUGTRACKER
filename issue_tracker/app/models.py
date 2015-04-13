@@ -19,9 +19,9 @@ CLOSED_STATUSES = (
 STATUSES = (OPEN_STATUSES + CLOSED_STATUSES)
 
 TYPES = (
-    ('bug', 'Bug',),
-    ('feature', 'Feature Request',),
-    ('internal_cleanup', 'Internal Cleanup',),
+    ('Bug', 'Bug',),
+    ('Feature', 'Feature Request',),
+    ('Internal_cleanup', 'Internal Cleanup',),
     )
 
 PRIORITIES = (
