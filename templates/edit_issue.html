@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-md-12">  
-                <input type="submit" value="Update" class="btn btn-primary" style="float: right; background-color: #A70303"/>
+                <input type="submit" value="Update" class="btn btn-primary" style="float: right; background-color: #A70303;"/>
             </div>
         </div>
 
@@ -81,9 +81,9 @@
             <br><br>
             <Strong>History:</Strong><br><br>
             <ul>
-                <li>Created By: <a href="mailto:{{ issue.reporter.email }}">{{ issue.reporter.first_name }} {{ issue.reporter.last_name }} ({{ issue.reporter }})</a></li><br><br>
+                <li>Created By: <a href="mailto:{{ issue.reporter.email }}" style="color: #B22222;">{{ issue.reporter.first_name }} {{ issue.reporter.last_name }} ({{ issue.reporter }})</a></li><br><br>
                 {% if issue.assignee %}
-                  <li>Assigned To: <a href="mailto:{{ issue.assignee.email }}">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
+                  <li>Assigned To: <a href="mailto:{{ issue.assignee.email }}" style="color: #B22222;">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
                 {% else %}
                   <li>Assigned To: {{ issue.assignee }})</li><br><br>
                 {% endif %}

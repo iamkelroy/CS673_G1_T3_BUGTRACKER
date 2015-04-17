@@ -1,7 +1,7 @@
 ﻿{% extends 'base.html' %}
 
 {% block title %}Issue Details{% endblock %}
-{% block header_title %}Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}{% endblock %}
+{% block header_title %}<div class="bug_name">Viewing a {{ issue.issue_type }} Priority: {{ issue.priority }}</div>{% endblock %}
 
 {% block content %}
 <script>
@@ -60,7 +60,7 @@ pre {
                 <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>
                         Assignee: 
                         {% if issue.assignee %}
-                          <a href="mailto:{{ issue.assignee.email }}">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
+                          <a href="mailto:{{ issue.assignee.email }}" style="color: #B22222;">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
                         {% else %}
                           {{ issue.assignee }}
                         {% endif %}
@@ -71,7 +71,7 @@ pre {
                 <p style="font-size: 18px; padding: 0px ; margin: 0px"><b>
                         Verifier:
                         {% if issue.verifier %}
-                          <a href="mailto:{{ issue.verifier.email }}">{{ issue.verifier.first_name }} {{ issue.verifier.last_name }} ({{ issue.verifier }})</a></li><br><br>
+                          <a href="mailto:{{ issue.verifier.email }}" style="color: #B22222;">{{ issue.verifier.first_name }} {{ issue.verifier.last_name }} ({{ issue.verifier }})</a></li><br><br>
                         {% else %}
                           {{ issue.verifier }}
                         {% endif %}
@@ -83,9 +83,9 @@ pre {
             <br><br>
             <Strong>History:</Strong><br><br>
             <ul>
-                <li>Created By: <a href="mailto:{{ issue.reporter.email }}">{{ issue.reporter.first_name }} {{ issue.reporter.last_name }} ({{ issue.reporter }})</a></li><br><br>
+                <li>Created By: <a href="mailto:{{ issue.reporter.email }}" style="color: #B22222;">{{ issue.reporter.first_name }} {{ issue.reporter.last_name }} ({{ issue.reporter }})</a></li><br><br>
                 {% if issue.assignee %}
-                  <li>Assigned To: <a href="mailto:{{ issue.assignee.email }}">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
+                  <li>Assigned To: <a href="mailto:{{ issue.assignee.email }}" style="color: #B22222;">{{ issue.assignee.first_name }} {{ issue.assignee.last_name }} ({{ issue.assignee }})</a></li><br><br>
                 {% else %}
                   <li>Assigned To: {{ issue.assignee }})</li><br><br>
                 {% endif %}
@@ -121,8 +121,8 @@ pre {
                     <p class="text-warning" style="color: #A70303;"><b>Status Updates/Comments: </b></p>
                     {% for comment in comment_list %}
                         
-                            <a href="#{{ forloop.counter0 }}">#{{ forloop.counter0 }}</a>, 
-                            <a href="mailto:{{ comment.poster.email }}">{{ comment.poster.first_name }} {{ comment.poster.last_name }} ({{ comment.poster }})</a>, <i>{{comment.date}}</i><br/>
+                            <a href="#{{ forloop.counter0 }}" style="color: #B22222;">#{{ forloop.counter0 }}</a>, 
+                            <a href="mailto:{{ comment.poster.email }}" style="color: #B22222;">{{ comment.poster.first_name }} {{ comment.poster.last_name }} ({{ comment.poster }})</a>, <i>{{comment.date}}</i><br/>
                         {% if comment.is_comment%}
                             <pre style=>{{ comment.comment }}</pre>
                         {% else %}
