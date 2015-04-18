@@ -169,3 +169,28 @@ class AssigneeListIssuesView(MultipleIssues):
             assignee=self.request.user).filter(
                 status__in=[x[0] for x in it_models.OPEN_STATUSES])
         return queryset
+
+
+class ReporterListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            reporter=self.request.user).order_by('-pk')
+        return queryset
+
+
+class ClosedListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            status__in=[x[0] for x in it_models.CLOSED_STATUSES]).order_by(
+                '-closed_date')
+        return queryset
+
+    
+class VerifiedListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            verifier=self.request.user).order_by('-pk')
+        return queryset
