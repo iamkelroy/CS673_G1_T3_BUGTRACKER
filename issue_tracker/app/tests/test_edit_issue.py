@@ -40,7 +40,7 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
         self.driver.find_element_by_css_selector(
             'button.btn').click()
         self.pause()
-        assert self.driver.current_url == "http://localhost:8081/issue/edit/1/"
+        assert self.driver.current_url == "localhost:8081/issue/edit/1/"
         # edit a value
         self.driver.find_element_by_id('id_title').send_keys('blarg')
         # save changes

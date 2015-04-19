@@ -3,38 +3,37 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 OPEN_STATUSES = (
-    ('new', 'New',),
-    ('assigned', 'Assigned',),
-    ('accepted', 'Accepted',),
+    ('Open-New', 'New',),
+    ('Open-Assigned', 'Assigned',),
+    ('Open-Accepted', 'Accepted',),
     )
 
 CLOSED_STATUSES = (
-    ('fixed', 'Fixed',),
-    ('verified', 'Verified',),
-    ('wai', 'Working as Intended',),
-    ('obsolete', 'Obsolete',),
-    ('duplicate', 'Duplicate',),
+    ('Closed-Fixed', 'Fixed',),
+    ('Closed-Verified', 'Verified',),
+    ('Closed-Working as Intended', 'Working as Intended',),
+    ('Closed-Obsolete', 'Obsolete',),
+    ('Closed-Duplicate', 'Duplicate',),
     )
 
 STATUSES = (OPEN_STATUSES + CLOSED_STATUSES)
 
 TYPES = (
-    ('bug', 'Bug',),
-    ('feature', 'Feature Request',),
-    ('internal_cleanup', 'Internal Cleanup',),
+    ('Bug', 'Bug',),
+    ('Feature', 'Feature Request',),
+    ('Internal Cleanup', 'Internal Cleanup',),
     )
 
 PRIORITIES = (
-    ('p1', 'P1',),
-    ('p2', 'P2',),
-    ('p3', 'P3',),
-    ('p4', 'P4',),
+    ('High', 'High',),
+    ('Medium', 'Medium',),
+    ('Low', 'Low',),
     )
 
 
 # TODO(jdarrieu): Dummied up, waiting for other team to provide.
-PROJECTS = (('1', 'Dummy project1',),
-            ('2', 'Dummy project2',),
+PROJECTS = (('Dummy Project 1', 'Dummy project1',),
+            ('Dummy Project 2', 'Dummy project2',),
             )
 
 
