@@ -2,9 +2,9 @@ from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
 import unittest
 
-
+# @unittest.skip
 class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
-    @unittest.skip("edit issue button currently not working")
+    # @unittest.skip("edit issue button currently not working")
     def test_edit_issue(self):
 
         # For this to work we need to either run a script to create generic
@@ -40,6 +40,7 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
         self.driver.find_element_by_css_selector(
             'button.btn').click()
         self.pause()
+        assert self.driver.current_url == "localhost:8081/issue/edit/1/"
         # edit a value
         self.driver.find_element_by_id('id_title').send_keys('blarg')
         # save changes
@@ -48,9 +49,3 @@ class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
         self.assertNotEqual(
             title,
             self.driver.find_element_by_class_name('bug_name').text)
-
-    @unittest.skip('To be built once edit feature is resolved')
-    def test_edit_access(self):
-        # this test is not active, but should ensure we can only reach edit
-        # page when an issue is selected
-        return

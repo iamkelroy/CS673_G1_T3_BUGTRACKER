@@ -19,9 +19,9 @@ CLOSED_STATUSES = (
 STATUSES = (OPEN_STATUSES + CLOSED_STATUSES)
 
 TYPES = (
-    ('bug', 'Bug',),
-    ('feature', 'Feature Request',),
-    ('internal_cleanup', 'Internal Cleanup',),
+    ('Bug', 'Bug',),
+    ('Feature', 'Feature Request',),
+    ('Internal Cleanup', 'Internal Cleanup',),
     )
 
 PRIORITIES = (
@@ -32,8 +32,8 @@ PRIORITIES = (
 
 
 # TODO(jdarrieu): Dummied up, waiting for other team to provide.
-PROJECTS = (('1', 'Dummy project1',),
-            ('2', 'Dummy project2',),
+PROJECTS = (('Dummy Project 1', 'Dummy project1',),
+            ('Dummy Project 2', 'Dummy project2',),
             )
 
 

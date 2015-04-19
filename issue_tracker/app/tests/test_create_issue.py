@@ -1,7 +1,8 @@
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
+import unittest
 
-
+# @unittest.skip
 class CreateIssueTestCase(base_testcase.CommonLiveServerTestCase):
     """Tests for the create issue page."""
 

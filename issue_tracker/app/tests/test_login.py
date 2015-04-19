@@ -1,7 +1,9 @@
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
+import unittest
 
 
+# @unittest.skip
 class LoginTestCase(base_testcase.CommonLiveServerTestCase):
 
     def test_login(self):

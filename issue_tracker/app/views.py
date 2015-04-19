@@ -41,15 +41,38 @@ class EditIssue(UpdateView):
         if form.has_changed():
             current_issue = form.save(commit=False)
             text = ['Issue is modified:']
+            object =it_models.Issue.objects.get(pk=self.object.pk)
             for field_name, field in form.fields.items():
                 if field_name in form.changed_data:
-                    if field_name in ['assignee', 'verifier']:
-                        text.append('%s: old value -> %s'
+                    #if field_name in ['assignee', 'verifier']:
+                        #text.append('%s: old value -> %s'
+                                    #% (field_name,
+                                       #form.cleaned_data[field_name].username))
+                    #I don't know how to make it more easy to read(Amy)
+                    if field_name=="assignee":
+                        if object.assignee==None:
+                            text.append('%s: old value(None) -> %s'
                                     % (field_name,
                                        form.cleaned_data[field_name].username))
-                    else:
-                        text.append('%s: old value -> %s'
+                        else:
+                            text.append('%s: old value(%s) -> %s'
                                     % (field_name,
+                                       object.assignee.username,
+                                       form.cleaned_data[field_name].username))
+                    elif field_name=="verifier":
+                        if object.verifier==None:
+                            text.append('%s: old value(None) -> %s'
+                                    % (field_name,
+                                       form.cleaned_data[field_name].username))
+                        else:
+                            text.append('%s: old value(%s) -> %s'
+                                    % (field_name,
+                                       object.verifier.username,
+                                       form.cleaned_data[field_name].username))
+                    else:
+                        text.append('%s: old value(%s) -> %s'
+                                    % (field_name,
+                                       getattr(object,field_name),
                                        form.cleaned_data[field_name]))
 
             current_issue.save()
@@ -145,4 +168,29 @@ class AssigneeListIssuesView(MultipleIssues):
         queryset = it_models.Issue.objects.filter(
             assignee=self.request.user).filter(
                 status__in=[x[0] for x in it_models.OPEN_STATUSES])
+        return queryset
+
+
+class ReporterListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            reporter=self.request.user).order_by('-pk')
+        return queryset
+
+
+class ClosedListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            status__in=[x[0] for x in it_models.CLOSED_STATUSES]).order_by(
+                '-closed_date')
+        return queryset
+
+    
+class VerifiedListIssuesView(MultipleIssues):
+
+    def get_queryset(self):
+        queryset = it_models.Issue.objects.filter(
+            verifier=self.request.user).order_by('-pk')
         return queryset
