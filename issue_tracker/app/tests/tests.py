@@ -5,8 +5,9 @@ These tests are to be run when 'manage.py test' is called.
 from django import test
 from issue_tracker.app import utils
 from issue_tracker.app import views
+import unittest
 
-
+# @unittest.skip
 class SimpleViewTest(test.TestCase):
 
     def setUp(self):

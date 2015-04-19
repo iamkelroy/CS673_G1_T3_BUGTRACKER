@@ -2,7 +2,7 @@ import unittest
 from selenium.webdriver.common.keys import Keys
 from app.tests import base_testcase
 
-
+# @unittest.skip
 class SearchIssuesTestCase(base_testcase.CommonLiveServerTestCase):
     """Tests for the search issues page."""
 
